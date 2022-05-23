@@ -1,6 +1,5 @@
-package App.FileInput;
+package App.Parsers;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

@@ -1,8 +1,12 @@
 package App.Entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonIgnoreProperties(value = {"studenti", "camere"})
 @Entity
 @Table(name = "camine")
 public class Camin {
@@ -10,10 +14,10 @@ public class Camin {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name="nume")
+    @Column(name = "nume")
     private String name;
 
-    @Column(name="nr_camere")
+    @Column(name = "nr_camere")
     private Integer nrCamere;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "camin")
@@ -22,7 +26,8 @@ public class Camin {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "camin")
     private List<Camera> camere = new ArrayList<>();
 
-    public Camin(){}
+    public Camin() {
+    }
 
     public Camin(Integer id, String name, Integer nrCamere) {
         this.id = id;

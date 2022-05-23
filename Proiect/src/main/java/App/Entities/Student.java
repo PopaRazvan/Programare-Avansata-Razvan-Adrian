@@ -1,8 +1,13 @@
 package App.Entities;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@JsonIgnoreProperties(value = {"camera", "camin"})
 @Entity
 @Table(name = "studenti")
 public class Student implements Serializable {
@@ -37,6 +42,7 @@ public class Student implements Serializable {
     @Column(name = "media")
     private Double media;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "data_nastere")
     private Date dataNastere;
 
@@ -44,14 +50,17 @@ public class Student implements Serializable {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name="id",insertable=false, updatable=false)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private Camera camera;
 
     @ManyToOne
-    @JoinColumn(name="id",insertable=false, updatable=false)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private Camin camin;
 
-    public Student(){};
+    public Student() {
+    }
+
+    ;
 
     public Student(Integer id, String nrMatricol, String nume, String prenume, String gen, String an, String grupa, Double media, Date dataNastere, String email) {
         this.id = id;
@@ -168,5 +177,25 @@ public class Student implements Serializable {
 
     public Camin getCamin() {
         return camin;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", idCamin=" + idCamin +
+                ", idCamera=" + idCamera +
+                ", nrMatricol='" + nrMatricol + '\'' +
+                ", nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", gen='" + gen + '\'' +
+                ", an='" + an + '\'' +
+                ", grupa='" + grupa + '\'' +
+                ", media=" + media +
+                ", dataNastere=" + dataNastere +
+                ", email='" + email + '\'' +
+                ", camera=" + camera +
+                ", camin=" + camin +
+                '}';
     }
 }

@@ -1,8 +1,12 @@
 package App.Entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonIgnoreProperties(value = {"studenti", "camin"})
 @Entity
 @Table(name = "camere")
 public class Camera {
@@ -20,10 +24,11 @@ public class Camera {
     private List<Student> studenti = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name="id",insertable=false, updatable=false)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private Camin camin;
 
-    public Camera(){}
+    public Camera() {
+    }
 
     public Camera(Integer id, Integer id_camin, Integer nrLocuri) {
         this.id = id;
