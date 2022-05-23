@@ -6,6 +6,8 @@ import App.Entities.Student;
 import App.Manager.Manager;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.List;
 
 public class CameraRepository {
 
@@ -31,5 +33,22 @@ public class CameraRepository {
         return entityManager.find(Camera.class,id);
     }
 
+    public List<Camin> getAll() {
+        Query query = entityManager.createQuery(
+                "SELECT c FROM Camera c");
+        return query.getResultList();
+    }
+
+    public void assignCameraToCamin(Camera camera,Camin camin)
+    {
+        camera.setIdCamin(camin.getId());
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery(
+                        "UPDATE Camera c SET c.idCamin=:idCamin WHERE c.id=:idCamera")
+                .setParameter("idCamin",camin.getId())
+                .setParameter("idCamera",camera.getId());
+        query.executeUpdate();
+        entityManager.getTransaction().commit();
+    }
 
 }

@@ -7,7 +7,7 @@ public class Manager {
     public EntityManagerFactory entityManagerFactory;
 
     private Manager() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("Students");
+        entityManagerFactory = Persistence.createEntityManagerFactory("STUDENT");
     }
 
     public static Manager getInstance() {

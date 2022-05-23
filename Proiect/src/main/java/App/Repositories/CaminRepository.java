@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CaminRepository {
 
-    private EntityManager entityManager = Manager.getInstance().entityManagerFactory.createEntityManager();
+    private final EntityManager entityManager = Manager.getInstance().entityManagerFactory.createEntityManager();
 
     public void create(Camin entity) {
         entityManager.getTransaction().begin();
@@ -32,8 +32,7 @@ public class CaminRepository {
         return entityManager.find(Camin.class, id);
     }
 
-
-    public List<Camin> getAll(String name) {
+    public List<Camin> getAll() {
         Query query = entityManager.createQuery(
                 "SELECT c FROM Camin c");
         return query.getResultList();

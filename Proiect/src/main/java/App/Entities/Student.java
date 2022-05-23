@@ -1,7 +1,7 @@
 package App.Entities;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+
 
 @Entity
 @Table(name = "studenti")
@@ -29,7 +29,7 @@ public class Student implements Serializable {
     private String gen;
 
     @Column(name = "an")
-    private String an;
+    private Integer an;
 
     @Column(name = "grupa")
     private String grupa;
@@ -38,7 +38,7 @@ public class Student implements Serializable {
     private Double media;
 
     @Column(name = "data_nastere")
-    private Date dataNastere;
+    private String dataNastere;
 
     @Column(name = "email")
     private String email;
@@ -53,7 +53,7 @@ public class Student implements Serializable {
 
     public Student(){};
 
-    public Student(Integer id, String nrMatricol, String nume, String prenume, String gen, String an, String grupa, Double media, Date dataNastere, String email) {
+    public Student(Integer id, String nrMatricol, String nume, String prenume, String gen, Integer an, String grupa, Double media, String dataNastere, String email) {
         this.id = id;
         this.nrMatricol = nrMatricol;
         this.nume = nume;
@@ -122,11 +122,11 @@ public class Student implements Serializable {
         this.gen = gen;
     }
 
-    public String getAn() {
+    public Integer getAn() {
         return an;
     }
 
-    public void setAn(String an) {
+    public void setAn(Integer an) {
         this.an = an;
     }
 
@@ -146,11 +146,11 @@ public class Student implements Serializable {
         this.media = media;
     }
 
-    public Date getDataNastere() {
+    public String getDataNastere() {
         return dataNastere;
     }
 
-    public void setDataNastere(Date dataNastere) {
+    public void setDataNastere(String dataNastere) {
         this.dataNastere = dataNastere;
     }
 
@@ -169,4 +169,5 @@ public class Student implements Serializable {
     public Camin getCamin() {
         return camin;
     }
+
 }

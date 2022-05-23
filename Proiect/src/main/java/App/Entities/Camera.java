@@ -10,8 +10,8 @@ public class Camera {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "id_camin")
-    private Integer id_camin;
+    @Column(name = "idCamin")
+    private Integer idCamin;
 
     @Column(name = "nr_locuri")
     private Integer nrLocuri;
@@ -27,7 +27,7 @@ public class Camera {
 
     public Camera(Integer id, Integer id_camin, Integer nrLocuri) {
         this.id = id;
-        this.id_camin = id_camin;
+        this.idCamin = id_camin;
         this.nrLocuri = nrLocuri;
     }
 
@@ -39,12 +39,12 @@ public class Camera {
         this.id = id;
     }
 
-    public Integer getId_camin() {
-        return id_camin;
+    public Integer getIdCamin() {
+        return idCamin;
     }
 
-    public void setId_camin(Integer id_camin) {
-        this.id_camin = id_camin;
+    public void setIdCamin(Integer id_camin) {
+        this.idCamin = id_camin;
     }
 
     public Integer getNrLocuri() {
