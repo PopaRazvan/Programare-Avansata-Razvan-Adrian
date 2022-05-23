@@ -1,0 +1,30 @@
+[
+  {
+    "id": 14,
+    "idCamin": 4,
+    "idCamera": 25,
+    "nrMatricol": "551234RSL124840",
+    "nume": "Parker",
+    "prenume": "Peter",
+    "gen": "M",
+    "grupa": "A1",
+    "an": "2",
+    "media": 8.23,
+    "dataNastere": "18-10-2000",
+    "email": "p.parker18@gmail.com"
+  },
+  {
+    "id": 14,
+    "idCamin": 4,
+    "idCamera": 25,
+    "nrMatricol": "551234RSL124840",
+    "nume": "Parker",
+    "prenume": "Peter",
+    "gen": "M",
+    "grupa": "A1",
+    "an": "2",
+    "media": 8.23,
+    "dataNastere": "18-10-2000",
+    "email": "p.parker18@gmail.com"
+  }
+]
