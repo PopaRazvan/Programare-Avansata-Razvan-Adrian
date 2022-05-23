@@ -1,8 +1,13 @@
 package App.Entities;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 
+@JsonIgnoreProperties(value = {"camera", "camin"})
 @Entity
 @Table(name = "studenti")
 public class Student implements Serializable {
@@ -170,4 +175,23 @@ public class Student implements Serializable {
         return camin;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", idCamin=" + idCamin +
+                ", idCamera=" + idCamera +
+                ", nrMatricol='" + nrMatricol + '\'' +
+                ", nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", gen='" + gen + '\'' +
+                ", an='" + an + '\'' +
+                ", grupa='" + grupa + '\'' +
+                ", media=" + media +
+                ", dataNastere=" + dataNastere +
+                ", email='" + email + '\'' +
+                ", camera=" + camera +
+                ", camin=" + camin +
+                '}';
+    }
 }
