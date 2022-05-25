@@ -10,7 +10,7 @@ import java.io.Serializable;
 @JsonIgnoreProperties(value = {"camera", "camin"})
 @Entity
 @Table(name = "studenti")
-public class Student implements Serializable {
+public class Student implements Serializable, Printable {
     @Id
     @Column(name = "id")
     private Integer id;
@@ -49,14 +49,25 @@ public class Student implements Serializable {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name="id",insertable=false, updatable=false)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private Camera camera;
 
     @ManyToOne
-    @JoinColumn(name="id",insertable=false, updatable=false)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private Camin camin;
 
-    public Student(){};
+    public Student() {
+        this.id = null;
+        this.nrMatricol = null;
+        this.nume = null;
+        this.prenume = null;
+        this.gen = null;
+        this.an = null;
+        this.grupa = null;
+        this.media = null;
+        this.dataNastere = null;
+        this.email = null;
+    }
 
     public Student(Integer id, String nrMatricol, String nume, String prenume, String gen, Integer an, String grupa, Double media, String dataNastere, String email) {
         this.id = id;

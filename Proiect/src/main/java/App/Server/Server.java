@@ -1,5 +1,7 @@
 package App.Server;
 
+import App.Manager.Manager;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -7,11 +9,12 @@ import java.net.SocketException;
 
 public class Server {
     private int PORT;
-    public Server(){
+
+    public Server() {
         PORT = 8100;
     }
 
-    public Server(int PORT){
+    public Server(int PORT) {
         this.PORT = PORT;
     }
 

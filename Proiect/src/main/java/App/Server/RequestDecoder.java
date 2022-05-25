@@ -8,9 +8,9 @@ public class RequestDecoder {
     public RequestDecoder() {
     }
 
-    public int decodeRequest(String clientRequest){
+    public int decodeRequest(String clientRequest) {
 
-        if(clientRequest.toLowerCase().trim().equals("stop")){
+        if (clientRequest.toLowerCase().trim().equals("stop")) {
             return STOP_CODE;
         }
         if (clientRequest.toLowerCase().trim().equals("exit")) {

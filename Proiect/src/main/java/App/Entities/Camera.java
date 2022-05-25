@@ -9,7 +9,7 @@ import java.util.List;
 @JsonIgnoreProperties(value = {"studenti", "camin"})
 @Entity
 @Table(name = "camere")
-public class Camera {
+public class Camera implements Printable {
     @Id
     @Column(name = "id")
     private Integer id;
