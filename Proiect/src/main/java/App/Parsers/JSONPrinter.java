@@ -28,37 +28,24 @@ public class JSONPrinter {
         filePath = null;
     }
 
-    public void printToFile(Camera object) {
-        try {
-            objectMapper.writeValue(new File(filePath), object);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void printToFile(Camera object) throws IOException {
+        objectMapper.writeValue(new File(filePath), object);
+
     }
 
-    public void printToFile(List<Printable> object) {
-        try {
-            objectMapper.writeValue(new File(filePath), object);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void printToFile(List<Printable> object) throws IOException {
+        objectMapper.writeValue(new File(filePath), object);
+
     }
 
-    public void printToFile(Student object) {
-        try {
-            objectMapper.writeValue(new File(filePath), object);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void printToFile(Student object) throws IOException {
+        objectMapper.writeValue(new File(filePath), object);
     }
 
 
-    public void printToFile(Camin object) {
-        try {
-            objectMapper.writeValue(new File(filePath), object);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void printToFile(Camin object) throws IOException {
+        objectMapper.writeValue(new File(filePath), object);
+
     }
 
     public void setFilePath(String path) {

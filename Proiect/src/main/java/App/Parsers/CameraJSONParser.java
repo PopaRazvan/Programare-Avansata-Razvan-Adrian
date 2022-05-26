@@ -18,26 +18,18 @@ public class CameraJSONParser implements JSONParser<Camera> {
     }
 
     @Override
-    public Camera mapObject(String path) {
-        try {
-            return objectMapper.readValue(new File(path), Camera.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public Camera mapObject(String path) throws IOException {
+        return objectMapper.readValue(new File(path), Camera.class);
     }
 
     @Override
-    public List<Camera> mapObjects(String path) {
-        try {
-            return objectMapper.readValue(new File(path), new TypeReference<List<Camera>>() {
-            });
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public List<Camera> mapObjects(String path) throws IOException {
+        return objectMapper.readValue(new File(path), new TypeReference<List<Camera>>() {
+        });
     }
 
     @Override
-    public List<Camera> parseFile(String path) {
+    public List<Camera> parseFile(String path) throws IOException {
         if (isValid(path)) {
             if (isArray(path)) {
                 return mapObjects(path);

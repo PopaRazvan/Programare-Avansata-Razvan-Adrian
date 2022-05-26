@@ -1,7 +1,0 @@
-[EL Info]: 2022-05-23 17:51:41.022--ServerSession(771775563)--EclipseLink, version: Eclipse Persistence Services - 2.7.9.v20210604-2c549e2208
-[EL Fine]: sql: 2022-05-23 17:51:41.577--ClientSession(1399794302)--Connection(1924949331)--INSERT INTO studenti (id, an, data_nastere, email, gen, grupa, id_camera, id_camin, media, nr_matricol, nume, prenume) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-	bind => [12 parameters bound]
-[EL Fine]: sql: 2022-05-23 17:51:41.614--ClientSession(1485089044)--Connection(1924949331)--INSERT INTO camine (id, nume, nr_camere) VALUES (?, ?, ?)
-	bind => [3 parameters bound]
-[EL Fine]: sql: 2022-05-23 17:51:41.795--ClientSession(1399794302)--Connection(1924949331)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
-	bind => [2 parameters bound]

@@ -1,4 +1,4 @@
-package App.Client;
+package Client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,6 +27,10 @@ public class ServerCommunication {
         socket = new Socket(serverAddress, PORT);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//      Implementation idea:
+//        - Terminal used only for logging in to the server via username and password
+//        - If logged in as admin then provide admin abilities
+//        - If logged in as client then provide interface for viewing data
     }
 
     public void beginCommunication() throws IOException {

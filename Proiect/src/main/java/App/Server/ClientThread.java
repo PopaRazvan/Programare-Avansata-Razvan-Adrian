@@ -1,7 +1,5 @@
 package App.Server;
 
-import App.Manager.Manager;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,6 +13,7 @@ public class ClientThread extends Thread {
     private ServerSocket serverSocket = null;
     private final RequestDecoder requestDecoder;
     private boolean servingClient;
+    private boolean adminUser;
 
     //TODO link with database
     //TODO implement current user / authorize admin user
@@ -22,22 +21,17 @@ public class ClientThread extends Thread {
         this.socket = socket;
         this.serverSocket = serverSocket;
         this.servingClient = true;
-        this.requestDecoder = new RequestDecoder();
+        this.requestDecoder = RequestDecoder.getInstance();
+        this.adminUser = false;
     }
 
     public void run() {
         //Thread responsible for communicating with the client
         try {
-            Manager manager = Manager.getInstance();
             while (servingClient) { //Main While loop
-                BufferedReader in = new BufferedReader(
-                        new InputStreamReader(socket.getInputStream()));
-                String request = in.readLine();
+                String request = readFromClient();
                 String response = processRequest(request);
-                response += "*";
-                PrintWriter out = new PrintWriter(socket.getOutputStream());
-                out.print(response);
-                out.flush();
+                sendResponse(response);
             }
 
         } catch (IOException e) {
@@ -52,6 +46,10 @@ public class ClientThread extends Thread {
     }
 
     private String processRequest(String request) throws IOException {
+//            Implementation idea:
+//            - Terminal used only for logging in to the server via username and password
+//            - If logged in as admin then provide admin abilities
+//            - If logged in as client then provide interface for viewing data
         switch (requestDecoder.decodeRequest(request)) {
             case RequestDecoder.STOP_CODE:
                 serverSocket.close();
@@ -61,8 +59,33 @@ public class ClientThread extends Thread {
             case RequestDecoder.CLIENT_EXIT_CODE:
                 servingClient = false;
                 return "Closing connection...";
+            case RequestDecoder.ADD_USER_CODE:
+                return addUser();
+
+            //TODO implement other requests handling
+
+            default:
+                return "Server received the request " + request;
         }
-        //TODO implement other requests handling
-        return "Server received the request " + request;
+    }
+
+    private String addUser() throws IOException {
+        sendResponse("Provide username:");
+        String name = readFromClient();
+        sendResponse("Provide password:");
+        String surname = readFromClient();
+        return "Added";
+    }
+
+    private String readFromClient() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        return in.readLine();
+    }
+
+    private void sendResponse(String response) throws IOException {
+        response += "*";
+        PrintWriter out = new PrintWriter(socket.getOutputStream());
+        out.print(response);
+        out.flush();
     }
 }

@@ -17,26 +17,20 @@ public class CaminJSONParser implements JSONParser<Camin> {
     }
 
     @Override
-    public Camin mapObject(String path) {
-        try {
-            return objectMapper.readValue(new File(path), Camin.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public Camin mapObject(String path) throws IOException {
+
+        return objectMapper.readValue(new File(path), Camin.class);
+
     }
 
     @Override
-    public List<Camin> mapObjects(String path) {
-        try {
-            return objectMapper.readValue(new File(path), new TypeReference<List<Camin>>() {
-            });
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public List<Camin> mapObjects(String path) throws IOException {
+        return objectMapper.readValue(new File(path), new TypeReference<List<Camin>>() {
+        });
     }
 
     @Override
-    public List<Camin> parseFile(String path) {
+    public List<Camin> parseFile(String path) throws IOException {
         if (isValid(path)) {
             if (isArray(path)) {
                 return mapObjects(path);
