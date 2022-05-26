@@ -19,6 +19,9 @@ public class AdminState implements ServerState {
         if (adaptedRequest.equals("launch")) {
             return RequestDecoder.LAUNCH_INTERFACE_CODE;
         }
+        if (adaptedRequest.equals("logout")) {
+            return RequestDecoder.LOGOUT_CODE;
+        }
         return RequestDecoder.UNKNOWN_REQUEST_CODE;
     }
 }

@@ -1,5 +1,9 @@
 package App.Server;
 
+import App.Server.States.AdminState;
+import App.Server.States.ClientState;
+import App.Server.States.LoginState;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -61,7 +65,12 @@ public class ClientThread extends Thread {
                 return "Closing connection...";
             case RequestDecoder.ADD_USER_CODE:
                 return addUser();
-
+            case RequestDecoder.LOGIN_CODE:
+                return login();
+            case RequestDecoder.LOGOUT_CODE:
+                return logout();
+            case RequestDecoder.LAUNCH_INTERFACE_CODE:
+                return launchInterface();
             //TODO implement other requests handling
 
             default:
@@ -87,5 +96,25 @@ public class ClientThread extends Thread {
         PrintWriter out = new PrintWriter(socket.getOutputStream());
         out.print(response);
         out.flush();
+    }
+
+    private String login() throws IOException {
+        sendResponse("Provide username:");
+        String username = readFromClient();
+        if (username.equals("admin")) {
+            requestDecoder.setState(new AdminState());
+        } else {
+            requestDecoder.setState(new ClientState());
+        }
+        return "Logged in!";
+    }
+
+    private String logout() {
+        requestDecoder.setState(new LoginState());
+        return "Logged out!";
+    }
+
+    private String launchInterface() {
+        return "Launching app...";
     }
 }

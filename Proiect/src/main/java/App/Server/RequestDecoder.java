@@ -14,7 +14,7 @@ public class RequestDecoder {
 
     private static RequestDecoder requestDecoder = new RequestDecoder();
 
-    ServerState serverState;
+    private ServerState serverState;
 
     public RequestDecoder() {
         serverState = new LoginState();
@@ -45,5 +45,9 @@ public class RequestDecoder {
 
     public static RequestDecoder getInstance() {
         return requestDecoder;
+    }
+
+    public void setState(ServerState newState) {
+        serverState = newState;
     }
 }
