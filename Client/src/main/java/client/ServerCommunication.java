@@ -34,12 +34,13 @@ public class ServerCommunication {
             request = clientInput.readLine();
             out.println(request);
             if(request.toLowerCase().equals("exit")) running = false;
-            String response = getResponse();
-            if(response.toLowerCase().trim().startsWith("sf:")){
-                System.out.println(response);
+            if(request.equals("send file")){
                 receiveFile();
             }
-            System.out.println(response);
+            else{
+                String response = getResponse();
+                System.out.println(response);
+            }
         }
     }
 
@@ -56,17 +57,14 @@ public class ServerCommunication {
         bytesRead = inputStream.read(bytes,0,bytes.length);
         current = bytesRead;
 
-        do {
-            bytesRead =
-                    inputStream.read(bytes, current, (bytes.length-current));
-            if(bytesRead >= 0) current += bytesRead;
-        } while(bytesRead > -1);
+        bufferedOutputStream.write(bytes, 0 , current);
 
-        fileOutputStream.write(bytes, 0 , current);
+
         bufferedOutputStream.flush();
         fileOutputStream.close();
         bufferedOutputStream.close();
         //System.out.println(getResponse());
+        System.out.println("Done!");
     }
 
     private String getResponse() throws IOException {

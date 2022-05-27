@@ -91,6 +91,7 @@ public class ClientThread extends Thread {
     }
 
     private void sendResponse(String response) throws IOException {
+        if (response.equals("nores")) return;
         response += "*";
         PrintWriter out = new PrintWriter(socket.getOutputStream());
         out.print(response);
@@ -126,12 +127,10 @@ public class ClientThread extends Thread {
         fileInputStream = new FileInputStream(myFile);
         bufferedInputStream = new BufferedInputStream(fileInputStream);
         bufferedInputStream.read(byteArray, 0, byteArray.length);
+        bufferedInputStream.close();
         outputStream = socket.getOutputStream();
         outputStream.write(byteArray, 0, byteArray.length);
         outputStream.flush();
-
-        bufferedInputStream.close();
-
-        return "Done";
+        return "nores";
     }
 }
