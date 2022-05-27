@@ -1,4 +1,4 @@
-package client;
+package com.example.studentaccomodation.client;
 
 import java.io.*;
 import java.net.Socket;
@@ -25,7 +25,7 @@ public class ServerCommunication {
 //      Implementation idea:
 //        - Terminal used only for logging in to the server via username and password
 //        - If logged in as admin then provide admin abilities
-//        - If logged in as client then provide interface for viewing data
+//        - If logged in as com.example.studentaccomodation.client then provide interface for viewing data
     }
 
     public void beginCommunication() throws IOException {
