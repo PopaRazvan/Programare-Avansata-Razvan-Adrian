@@ -20,6 +20,9 @@ public class Student implements Serializable, Printable {
     @Column(name = "id_camera")
     private Integer idCamera;
 
+    @Column(name = "id_preffered_student")
+    private Integer idPreferredStudent;
+
     @Column(name = "nr_matricol")
     private String nrMatricol;
 
@@ -48,13 +51,16 @@ public class Student implements Serializable, Printable {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_camera", insertable = false, updatable = false)
     private Camera camera;
 
     @ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_camin", insertable = false, updatable = false)
     private Camin camin;
 
+    @OneToOne
+    @JoinColumn(name = "id_preferred_student", insertable = false, updatable = false)
+    private Student preferredStudent;
     public Student() {
         this.id = null;
         this.nrMatricol = null;
@@ -183,6 +189,14 @@ public class Student implements Serializable, Printable {
 
     public Camin getCamin() {
         return camin;
+    }
+
+    public Student getPreferredStudent() {
+        return preferredStudent;
+    }
+
+    public void setPreferedStudent(Student preferredStudent) {
+        this.preferredStudent = preferredStudent;
     }
 
     @Override

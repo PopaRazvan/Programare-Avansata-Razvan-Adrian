@@ -2,6 +2,7 @@ package app.repositories;
 
 import app.entities.Camera;
 import app.entities.Camin;
+import app.entities.Student;
 import app.manager.Manager;
 
 import javax.persistence.EntityManager;
@@ -32,11 +33,13 @@ public class CameraRepository {
         return entityManager.find(Camera.class, id);
     }
 
-    public List<Camin> getAll() {
+    public List<Camera> getAll() {
         Query query = entityManager.createQuery(
                 "SELECT c FROM Camera c");
         return query.getResultList();
     }
+
+
 
     public void assignCameraToCamin(Camera camera, Camin camin) {
         camera.setIdCamin(camin.getId());

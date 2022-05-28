@@ -17,6 +17,9 @@ public class Camin implements Printable {
     @Column(name = "nume")
     private String name;
 
+    @Column(name = "rating")
+    private Integer rating;
+
     @Column(name = "nr_camere")
     private Integer nrCamere;
 
@@ -65,5 +68,13 @@ public class Camin implements Printable {
 
     public List<Camera> getCamere() {
         return camere;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 }
