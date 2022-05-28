@@ -8,6 +8,10 @@ module com.example.studentaccomodation {
     requires org.kordamp.ikonli.javafx;
     requires eu.hansolo.tilesfx;
 
-    opens com.example.studentaccomodation to javafx.fxml;
+//    opens com.example.studentaccomodation to javafx.fxml;
+//    exports com.example.studentaccomodation;
     exports com.example.studentaccomodation;
+    opens com.example.studentaccomodation to javafx.fxml;
+    exports com.example.studentaccomodation.UI;
+    opens com.example.studentaccomodation.UI to javafx.fxml;
 }
