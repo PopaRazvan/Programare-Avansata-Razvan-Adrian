@@ -1,6 +1,7 @@
 package app.repositories;
 
 import app.entities.Camin;
+import app.entities.Student;
 import app.manager.Manager;
 
 import javax.persistence.EntityManager;
@@ -34,6 +35,12 @@ public class CaminRepository {
     public List<Camin> getAll() {
         Query query = entityManager.createQuery(
                 "SELECT c FROM Camin c");
+        return query.getResultList();
+    }
+
+    public List<Camin> getByRating() {
+        Query query = entityManager.createQuery(
+                "SELECT c FROM Camin c order by c.rating asc ");
         return query.getResultList();
     }
 

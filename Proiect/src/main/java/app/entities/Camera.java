@@ -24,7 +24,7 @@ public class Camera implements Printable {
     private List<Student> studenti = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_camin", insertable = false, updatable = false)
     private Camin camin;
 
     public Camera() {

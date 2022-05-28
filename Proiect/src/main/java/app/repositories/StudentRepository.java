@@ -53,7 +53,7 @@ public class StudentRepository {
 
     public List<Student> getByMedia() {
         Query query = entityManager.createQuery(
-                "SELECT s FROM Student s order by s.media desc");
+                "SELECT s FROM Student s order by s.media asc ");
         return query.getResultList();
     }
 
