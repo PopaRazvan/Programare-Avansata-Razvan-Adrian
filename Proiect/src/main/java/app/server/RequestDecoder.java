@@ -12,6 +12,7 @@ public class RequestDecoder {
     public static final int LOGIN_CODE = 5;
     public static final int LOGOUT_CODE = 6;
     public static final int SEND_FILE_CODE = 7;
+    public static final int LOGIN_CREDENTIALS_CODE = 8;
 
     private static RequestDecoder requestDecoder = new RequestDecoder();
 

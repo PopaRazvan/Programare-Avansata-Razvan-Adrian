@@ -16,6 +16,9 @@ public class LoginState implements ServerState {
         if (adaptedRequest.equals("send file")) {
             return RequestDecoder.SEND_FILE_CODE;
         }
+        if (adaptedRequest.startsWith("l:")) {
+            return RequestDecoder.LOGIN_CREDENTIALS_CODE;
+        }
         return RequestDecoder.UNKNOWN_REQUEST_CODE;
     }
 }
