@@ -72,6 +72,10 @@ public class ClientThread extends Thread {
                 return sendFile("src/main/resources/IOFiles/test.txt");
             case RequestDecoder.LOGIN_CREDENTIALS_CODE:
                 return loginCredentials(request);
+            case RequestDecoder.CHANGE_PASSWORD_CODE:
+                return changePassword(request);
+            case RequestDecoder.GIVE_CREDENTIALS_CODE:
+                return giveCredentials(request);
             //TODO implement other requests handling
 
             default:
@@ -79,15 +83,51 @@ public class ClientThread extends Thread {
         }
     }
 
+    private String giveCredentials(String request) {//like: "gc:username"
+        request = request.substring(3);
+        System.out.println("Giving credentials");
+        String response;
+        //TODO get info from db (name, location, register number)
+        response = "Balan Andrei, C4 camera 6, 310045RSL449102";
+        return response;
+    }
+
+    private String changePassword(String request) { // like: "cp:username,new_password"
+        request = request.substring(3);
+        String[] credentials = request.split(",");
+        String username = credentials[0];
+        String pass = credentials[1];
+
+        //TODO change password
+
+        return "Done";
+    }
+
     private String loginCredentials(String request) {
         request = request.substring(2);
         String[] credentials = request.split("\\|");
-        String username = credentials[0];
-        String password = credentials[1];
+        String username;
+        String password;
+        if (credentials.length == 0) {
+            username = null;
+            password = null;
+        } else if (credentials.length == 1) {
+            username = credentials[0];
+            password = null;
+        } else {
+            username = credentials[0];
+            password = credentials[1];
+        }
+
+        if (username == null || username.isEmpty()) {
+            return "ILU";
+        }
         if (isValidUser(username, password)) {
             if (isSuperUser(username)) {
+                System.out.println("Admin State:");
                 return "VLA"; //valid login admin
             }
+            System.out.println("Client State:");
             return "VLU"; //valid login user
         }
         return "ILU"; //invalid login user
@@ -162,4 +202,6 @@ public class ClientThread extends Thread {
         outputStream.flush();
         return "nores";
     }
+
+
 }

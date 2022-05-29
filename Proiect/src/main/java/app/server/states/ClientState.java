@@ -16,6 +16,12 @@ public class ClientState implements ServerState {
         if (adaptedRequest.equals("logout")) {
             return RequestDecoder.LOGOUT_CODE;
         }
+        if (adaptedRequest.startsWith("cp:")) {
+            return RequestDecoder.CHANGE_PASSWORD_CODE;
+        }
+        if (adaptedRequest.startsWith("gc:")) {
+            return RequestDecoder.GIVE_CREDENTIALS_CODE;
+        }
         return RequestDecoder.UNKNOWN_REQUEST_CODE;
     }
 }

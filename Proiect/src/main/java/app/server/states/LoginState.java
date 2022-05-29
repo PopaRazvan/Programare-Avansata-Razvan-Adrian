@@ -19,6 +19,12 @@ public class LoginState implements ServerState {
         if (adaptedRequest.startsWith("l:")) {
             return RequestDecoder.LOGIN_CREDENTIALS_CODE;
         }
+        if (adaptedRequest.startsWith("cp:")) {
+            return RequestDecoder.CHANGE_PASSWORD_CODE;
+        }
+        if (adaptedRequest.startsWith("gc:")) {
+            return RequestDecoder.GIVE_CREDENTIALS_CODE;
+        }
         return RequestDecoder.UNKNOWN_REQUEST_CODE;
     }
 }

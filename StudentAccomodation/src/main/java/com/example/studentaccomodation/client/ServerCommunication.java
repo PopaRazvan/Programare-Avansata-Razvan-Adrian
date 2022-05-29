@@ -36,21 +36,31 @@ public class ServerCommunication {
         while(running){
             //request = clientInput.readLine();
             request = control.receiveInput();
+            System.out.println("Read: " + request);
             out.println(request);
+            System.out.println("Sent to server");
             if(request.toLowerCase().equals("exit")) running = false;
-            if(request.equals("send file")){
+            else if(request.equals("send file")){
                 receiveFile();
             }
-            if(request.startsWith("l:")){
+            else if(request.startsWith("l:")){
                 String response = getResponse();
                 control.sendResponse(response);
                 System.out.println(response);
             }
-            else{
+            else if(request.startsWith("gc:")){
                 String response = getResponse();
-                control.receiveInput();
+                control.sendResponse(response);
+            }
+            else if(request.startsWith("cp:")){
+                String response = getResponse();
                 System.out.println(response);
             }
+            else{
+                String response = getResponse();
+                System.out.println(response);
+            }
+            System.out.println("End loop");
         }
     }
 

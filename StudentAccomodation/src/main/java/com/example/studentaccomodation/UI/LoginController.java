@@ -1,19 +1,33 @@
 package com.example.studentaccomodation.UI;
 
+import com.example.studentaccomodation.HelloApplication;
 import com.example.studentaccomodation.client.Control;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.IOException;
 
 public class LoginController {
 
     private class Logger extends Thread{
-        LoginController loginController;
+        private LoginController loginController;
 
         public Logger(LoginController loginController) {
             this.loginController = loginController;
@@ -30,9 +44,19 @@ public class LoginController {
             System.out.println("Received: " + response);
             if(response.equals("ILU")){
                 loginController.unsuccessfulLogin();
+
             }
-            else{
+            else if(response.equals("VLU")){
+                control.setCurrentUser(username);
+                control.setCurrentPassword(password);
                 loginController.successfulLogin();
+                control.drawUser = true;
+            }
+            else if(response.equals("VLA")){
+                control.setCurrentUser(username);
+                control.setCurrentPassword(password);
+                loginController.successfulLogin();
+                control.drawAdmin = true;
             }
             System.out.println("End");
         }
@@ -46,18 +70,38 @@ public class LoginController {
     @FXML
     private Label failedLoginLabel;
 
+    @FXML
+    private VBox loginContent;
+
+    private Stage stage;
+    private Parent root;
+    private Scene scene;
+
     private Control control = Control.getInstance();
 
     private String localInput;
     private String localResponse = "null";
     public void initialize(){
+        control.drawAdmin = false;
         successLoginLabel.setVisible(false);
         failedLoginLabel.setVisible(false);
     }
 
-    public void login(ActionEvent e){
+    public void login(ActionEvent event){
         Logger logger = new Logger(this);
         logger.start();
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if(control.drawUser){
+            try {
+                drawUserInterface(event);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private void successfulLogin(){
@@ -95,5 +139,11 @@ public class LoginController {
         disableText.playFromStart();
     }
 
-
+    private void drawUserInterface(ActionEvent event) throws IOException {
+        control.drawUser = false;
+        Parent root = FXMLLoader.load(HelloApplication.class.getResource("user.fxml"));
+        Scene scene = new Scene(root, 810, 700);
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+    }
 }

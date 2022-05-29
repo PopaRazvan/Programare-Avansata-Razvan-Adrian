@@ -24,7 +24,7 @@
             <Image url="@images/SA_bg_1.png" />
          </image>
       </ImageView>
-      <VBox prefHeight="700.0" prefWidth="810.0">
+      <VBox fx:id="loginContent" prefHeight="700.0" prefWidth="810.0">
          <children>
             <Pane prefHeight="273.0" prefWidth="810.0" />
             <Pane prefHeight="268.0" prefWidth="810.0">
