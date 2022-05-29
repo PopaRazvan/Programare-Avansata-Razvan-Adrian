@@ -14,6 +14,8 @@ public class ServerCommunication {
     private PrintWriter out;
     private BufferedReader in;
 
+    private Control control;
+
     public ServerCommunication(String serverAddress, int PORT) throws IOException {
         this.serverAddress = serverAddress;
         this.PORT = PORT;
@@ -22,6 +24,7 @@ public class ServerCommunication {
         socket = new Socket(serverAddress, PORT);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        control = Control.getInstance();
 //      Implementation idea:
 //        - Terminal used only for logging in to the server via username and password
 //        - If logged in as admin then provide admin abilities
@@ -31,14 +34,21 @@ public class ServerCommunication {
     public void beginCommunication() throws IOException {
 
         while(running){
-            request = clientInput.readLine();
+            //request = clientInput.readLine();
+            request = control.receiveInput();
             out.println(request);
             if(request.toLowerCase().equals("exit")) running = false;
             if(request.equals("send file")){
                 receiveFile();
             }
+            if(request.startsWith("l:")){
+                String response = getResponse();
+                control.sendResponse(response);
+                System.out.println(response);
+            }
             else{
                 String response = getResponse();
+                control.receiveInput();
                 System.out.println(response);
             }
         }

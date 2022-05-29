@@ -70,11 +70,40 @@ public class ClientThread extends Thread {
                 return launchInterface();
             case RequestDecoder.SEND_FILE_CODE:
                 return sendFile("src/main/resources/IOFiles/test.txt");
+            case RequestDecoder.LOGIN_CREDENTIALS_CODE:
+                return loginCredentials(request);
             //TODO implement other requests handling
 
             default:
                 return "Server received the request " + request;
         }
+    }
+
+    private String loginCredentials(String request) {
+        request = request.substring(2);
+        String[] credentials = request.split("\\|");
+        String username = credentials[0];
+        String password = credentials[1];
+        if (isValidUser(username, password)) {
+            if (isSuperUser(username)) {
+                return "VLA"; //valid login admin
+            }
+            return "VLU"; //valid login user
+        }
+        return "ILU"; //invalid login user
+    }
+
+    private boolean isSuperUser(String username) {
+        if (username.equals("admin")) {
+            return true;
+        }
+        System.out.println("|" + username + "|");
+        return false;
+    }
+
+    private boolean isValidUser(String username, String password) {
+        return true;
+        //TODO implement validation
     }
 
     private String addUser() throws IOException {

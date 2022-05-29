@@ -3,8 +3,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Client {
-    //TODO export Client to another project
+public class Client extends Thread{
     private String serverAddress;
     private int PORT;
 
@@ -31,5 +30,10 @@ public class Client {
         catch(IOException e){
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public void run() {
+        connect();
     }
 }

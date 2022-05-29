@@ -1,5 +1,6 @@
 package com.example.studentaccomodation.UI;
 
+import com.example.studentaccomodation.client.Control;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -10,6 +11,32 @@ import javafx.scene.control.TextField;
 import javafx.util.Duration;
 
 public class LoginController {
+
+    private class Logger extends Thread{
+        LoginController loginController;
+
+        public Logger(LoginController loginController) {
+            this.loginController = loginController;
+        }
+
+        @Override
+        public void run(){
+            String username = userName.getText();
+            String password = userPassword.getText();
+
+            control.sendInput("l:" + username + '|' + password);
+            System.out.println("Sent: " + control.getUserInput());
+            String response = control.receiveResponse();
+            System.out.println("Received: " + response);
+            if(response.equals("ILU")){
+                loginController.unsuccessfulLogin();
+            }
+            else{
+                loginController.successfulLogin();
+            }
+            System.out.println("End");
+        }
+    }
     @FXML
     private PasswordField userPassword;
     @FXML
@@ -18,27 +45,19 @@ public class LoginController {
     private Label successLoginLabel;
     @FXML
     private Label failedLoginLabel;
+
+    private Control control = Control.getInstance();
+
+    private String localInput;
+    private String localResponse = "null";
     public void initialize(){
         successLoginLabel.setVisible(false);
         failedLoginLabel.setVisible(false);
     }
 
     public void login(ActionEvent e){
-        String username = userName.getText();
-        String password = userPassword.getText();
-        if(username.isEmpty()){
-            unsuccessfulLogin();
-            System.out.println("Null");
-            return;
-        }
-        if(username.trim().equals("admin")){
-            successfulLogin();
-        }
-        else{
-            unsuccessfulLogin();
-            System.out.println("|" + username + "|");
-        }
-
+        Logger logger = new Logger(this);
+        logger.start();
     }
 
     private void successfulLogin(){
