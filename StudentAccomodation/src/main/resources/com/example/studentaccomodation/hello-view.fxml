@@ -1,16 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.studentaccomodation.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="810.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studentaccomodation.UI.LoginController">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="844.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/SA_bg_1.png" />
+         </image>
+      </ImageView>
+      <VBox prefHeight="700.0" prefWidth="810.0">
+         <children>
+            <Pane prefHeight="273.0" prefWidth="810.0" />
+            <Pane prefHeight="268.0" prefWidth="810.0">
+               <children>
+                  <GridPane layoutX="124.0" prefHeight="200.0" prefWidth="536.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="202.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="398.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="93.0" valignment="CENTER" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label layoutX="63.0" layoutY="43.0" text="Username:" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label text="Password:" textFill="WHITE" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Gill Sans MT" size="30.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="userName" promptText="type here..." GridPane.columnIndex="1" />
+                        <PasswordField fx:id="userPassword" promptText="type password here..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+            </Pane>
+            <Pane prefHeight="291.0" prefWidth="810.0">
+               <children>
+                  <JFXButton layoutX="305.0" layoutY="68.0" onAction="#login" prefHeight="84.0" prefWidth="201.0" text="Log In" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <ripplerFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.20955166220664978" green="0.4707927107810974" blue="0.5657894611358643" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.6271929740905762" green="0.8246344923973083" blue="0.9473684430122375" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </ripplerFill>
+                  </JFXButton>
+                  <Label fx:id="failedLoginLabel" alignment="CENTER" layoutX="-1.0" layoutY="33.0" prefHeight="35.0" prefWidth="810.0" text="Username or password incorrect" textAlignment="CENTER" textFill="#a81717">
+                     <font>
+                        <Font name="Gill Sans MT Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="successLoginLabel" alignment="CENTER" layoutX="-1.0" layoutY="152.0" prefHeight="35.0" prefWidth="810.0" text="Logged in successfuly" textFill="#15901e">
+                     <font>
+                        <Font name="Gill Sans MT Italic" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
