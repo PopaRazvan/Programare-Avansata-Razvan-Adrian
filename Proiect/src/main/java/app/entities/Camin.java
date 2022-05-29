@@ -32,10 +32,11 @@ public class Camin implements Printable {
     public Camin() {
     }
 
-    public Camin(Integer id, String name, Integer nrCamere) {
+    public Camin(Integer id, String name, Integer nrCamere,Integer rating) {
         this.id = id;
         this.name = name;
         this.nrCamere = nrCamere;
+        this.rating=rating;
     }
 
     public Integer getId() {

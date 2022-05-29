@@ -14,7 +14,7 @@ public class Camera implements Printable {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "idCamin")
+    @Column(name = "id_camin")
     private Integer idCamin;
 
     @Column(name = "nr_locuri")
