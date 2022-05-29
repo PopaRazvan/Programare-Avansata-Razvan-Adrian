@@ -1,10 +1,7 @@
 package app.entities;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.io.Serializable;
-
 
 @JsonIgnoreProperties(value = {"camera", "camin"})
 @Entity
@@ -61,6 +58,8 @@ public class Student implements Serializable, Printable {
     @OneToOne
     @JoinColumn(name = "id_preferred_student", insertable = false, updatable = false)
     private Student preferredStudent;
+
+
     public Student() {
         this.id = null;
         this.nrMatricol = null;

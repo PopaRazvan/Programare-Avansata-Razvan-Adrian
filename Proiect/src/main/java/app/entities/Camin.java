@@ -3,13 +3,14 @@ package app.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(value = {"studenti", "camere"})
 @Entity
 @Table(name = "camine")
-public class Camin implements Printable {
+public class Camin implements Serializable,Printable {
     @Id
     @Column(name = "id")
     private Integer id;
@@ -24,12 +25,17 @@ public class Camin implements Printable {
     private Integer nrCamere;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "camin")
+    private List<Camera> camere = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "camin")
     private List<Student> studenti = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "camin")
-    private List<Camera> camere = new ArrayList<>();
+
 
     public Camin() {
+        this.id = null;
+        this.name = null;
+        this.nrCamere = null;
+        this.rating=null;
     }
 
     public Camin(Integer id, String name, Integer nrCamere,Integer rating) {
@@ -77,5 +83,17 @@ public class Camin implements Printable {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return "Camin{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", rating=" + rating +
+                ", nrCamere=" + nrCamere +
+                ", studenti=" + studenti +
+                ", camere=" + camere +
+                '}';
     }
 }

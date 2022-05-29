@@ -1,5 +1,6 @@
 package app;
 
+import app.Algorithm.Algorithm;
 import app.server.Server;
 
 import java.io.IOException;
@@ -24,12 +25,14 @@ public class Main {
         //studentRepository.close();
         //caminRepository.close();
 
-        Server server = new Server();
-        try {
-            server.runServer();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Algorithm algorithm =new Algorithm();
+
+        //Server server = new Server();
+        //try {
+       //     server.runServer();
+       // } catch (IOException e) {
+        //    throw new RuntimeException(e);
+       // }
     }
 
 }

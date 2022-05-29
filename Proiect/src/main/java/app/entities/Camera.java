@@ -3,13 +3,14 @@ package app.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(value = {"studenti", "camin"})
 @Entity
 @Table(name = "camere")
-public class Camera implements Printable {
+public class Camera implements Serializable,Printable {
     @Id
     @Column(name = "id")
     private Integer id;
@@ -28,6 +29,8 @@ public class Camera implements Printable {
     private Camin camin;
 
     public Camera() {
+        this.id = null;
+        this.nrLocuri = null;
     }
 
     public Camera(Camera camera) {
@@ -72,5 +75,20 @@ public class Camera implements Printable {
 
     public Camin getCamin() {
         return camin;
+    }
+
+    public void setStudenti(List<Student> studenti) {
+        this.studenti = studenti;
+    }
+
+    @Override
+    public String toString() {
+        return "Camera{" +
+                "id=" + id +
+                ", idCamin=" + idCamin +
+                ", nrLocuri=" + nrLocuri +
+                ", studenti=" + studenti +
+
+                '}';
     }
 }

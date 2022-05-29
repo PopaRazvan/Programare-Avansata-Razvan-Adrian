@@ -12,6 +12,7 @@ import java.util.List;
 public class StudentRepository {
     private EntityManager entityManager = Manager.getInstance().entityManagerFactory.createEntityManager();
 
+
     public void create(Student entity) {
         entityManager.getTransaction().begin();
         entityManager.persist(entity);
@@ -53,7 +54,7 @@ public class StudentRepository {
 
     public List<Student> getByMedia() {
         Query query = entityManager.createQuery(
-                "SELECT s FROM Student s order by s.media asc ");
+                "SELECT s FROM Student s ORDER BY s.media ASC ");
         return query.getResultList();
     }
 

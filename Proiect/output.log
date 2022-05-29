@@ -1,0 +1,223 @@
+[EL Info]: 2022-05-29 22:29:38.577--ServerSession(6519275)--EclipseLink, version: Eclipse Persistence Services - 2.7.9.v20210604-2c549e2208
+[EL Fine]: sql: 2022-05-29 22:29:39.081--ServerSession(6519275)--Connection(247113419)--SELECT id, an, data_nastere, email, gen, grupa, id_camera, id_camin, id_preferred_student, media, nr_matricol, nume, prenume FROM studenti ORDER BY media ASC
+[EL Fine]: sql: 2022-05-29 22:29:39.114--ServerSession(6519275)--Connection(247113419)--SELECT id, nume, nr_camere, rating FROM camine ORDER BY rating ASC
+[EL Fine]: sql: 2022-05-29 22:29:39.118--ServerSession(6519275)--Connection(247113419)--SELECT id, id_camin, nr_locuri FROM camere WHERE (id_camin = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.125--ServerSession(6519275)--Connection(247113419)--SELECT id, id_camin, nr_locuri FROM camere WHERE (id_camin = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.128--ServerSession(6519275)--Connection(247113419)--SELECT id, id_camin, nr_locuri FROM camere WHERE (id_camin = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.129--ServerSession(6519275)--Connection(247113419)--SELECT id, an, data_nastere, email, gen, grupa, id_camera, id_camin, id_preferred_student, media, nr_matricol, nume, prenume FROM studenti WHERE (id_camera = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.143--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.145--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.151--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.151--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.155--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.156--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.158--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.159--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.161--ServerSession(6519275)--Connection(247113419)--SELECT id, an, data_nastere, email, gen, grupa, id_camera, id_camin, id_preferred_student, media, nr_matricol, nume, prenume FROM studenti WHERE (id_camera = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.162--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.162--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.164--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.165--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.167--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.168--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.17--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.17--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.172--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.172--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.174--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.175--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.176--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.177--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.179--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.179--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.181--ServerSession(6519275)--Connection(247113419)--SELECT id, an, data_nastere, email, gen, grupa, id_camera, id_camin, id_preferred_student, media, nr_matricol, nume, prenume FROM studenti WHERE (id_camera = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.182--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.182--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.185--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.185--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.187--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.187--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.189--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.189--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.191--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.192--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.194--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.195--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.196--ServerSession(6519275)--Connection(247113419)--SELECT id, an, data_nastere, email, gen, grupa, id_camera, id_camin, id_preferred_student, media, nr_matricol, nume, prenume FROM studenti WHERE (id_camera = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.197--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.198--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.2--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.202--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.203--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.204--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.206--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.207--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.208--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.209--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.21--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.211--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.212--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.213--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.215--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.216--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.217--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.219--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.219--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.22--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.222--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.222--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.223--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.224--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.225--ServerSession(6519275)--Connection(247113419)--SELECT id, an, data_nastere, email, gen, grupa, id_camera, id_camin, id_preferred_student, media, nr_matricol, nume, prenume FROM studenti WHERE (id_camera = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.227--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.227--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.228--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.229--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.231--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.232--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.233--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.234--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.236--ServerSession(6519275)--Connection(247113419)--SELECT id, an, data_nastere, email, gen, grupa, id_camera, id_camin, id_preferred_student, media, nr_matricol, nume, prenume FROM studenti WHERE (id_camera = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.236--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.237--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.238--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.238--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.24--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.24--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.241--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.242--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.244--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.244--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.246--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.247--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.249--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.25--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.251--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.251--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.253--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.254--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.255--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.256--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.258--ServerSession(6519275)--Connection(247113419)--SELECT id, an, data_nastere, email, gen, grupa, id_camera, id_camin, id_preferred_student, media, nr_matricol, nume, prenume FROM studenti WHERE (id_camera = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.258--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.259--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.26--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.261--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.263--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.264--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.265--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.266--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.268--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.268--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camera = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.27--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-29 22:29:39.27--ClientSession(1888924788)--Connection(247113419)--UPDATE studenti SET id_camin = ? WHERE (id = ?)
+	bind => [2 parameters bound]
