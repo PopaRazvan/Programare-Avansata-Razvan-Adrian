@@ -27,12 +27,6 @@ public class Camera {
     public Camera() {
     }
 
-    public Camera(Camera camera) {
-        this.id = camera.id;
-        this.idCamin = camera.idCamin;
-        this.nrLocuri = camera.nrLocuri;
-    }
-
     public Camera(Integer id, Integer idCamin, Integer nrLocuri) {
         this.id = id;
         this.idCamin = idCamin;

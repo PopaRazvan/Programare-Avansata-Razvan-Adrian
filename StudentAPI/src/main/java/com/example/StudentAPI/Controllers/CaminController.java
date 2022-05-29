@@ -23,15 +23,21 @@ public class CaminController {
     }
 
     @GetMapping("/camin/{id}")
-    public Optional<Camin> getCamin(@PathVariable("id") int id){
+    public Optional<Camin> getCamin(@PathVariable("id") int id) {
         return caminDao.findById(id);
     }
 
     @PostMapping("/addCamin")
-    public int addCamin(@RequestBody Student student)
-    {
-        int id=1+caminDao.getCountOfCamin();
-        caminDao.save(new Camin());
+    public int addCamin(@RequestBody Camin camin) {
+        int id;
+        if (caminDao.getCountOfCamin() == null)
+            id = 1;
+        else
+            id = 1 + caminDao.getCountOfCamin();
+
+
+        System.out.println(id);
+        caminDao.save(new Camin(id, camin.getName(), camin.getNrCamere(), camin.getRating()));
         return id;
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public interface StudentDao extends CrudRepository<Student, Integer> {
     @Query("SELECT MAX(s.id) FROM Student s")
-    int getCountOfStudent();
+    Integer getCountOfStudent();
 
     @Query("SELECT s FROM Student s where s.idCamera = ?1")
     List<Student> getStudentsByIdCamera(int idCamera);

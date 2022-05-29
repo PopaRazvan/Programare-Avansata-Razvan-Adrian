@@ -15,7 +15,7 @@ public class Student {
     @Column(name = "id_camera")
     private Integer idCamera;
 
-    @Column(name = "id_preffered_student")
+    @Column(name = "id_preferred_student")
     private Integer idPreferredStudent;
 
     @Column(name = "nr_matricol")

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CameraDao extends CrudRepository<Camera, Integer> {
     @Query("SELECT MAX(c.id) FROM Camera c")
-    int getCountOfCamera();
+    Integer getCountOfCamera();
     @Query("UPDATE Camera c SET c.idCamin=?1 WHERE c.id=?2")
     void assignCameraToCamin(int idCamin,int idCamera);
 

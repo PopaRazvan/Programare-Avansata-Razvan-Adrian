@@ -28,10 +28,15 @@ public class CameraController {
         return cameraDao.findById(id);
     }
 
-    @PostMapping("/addCamera/{idCamin}")
-    public int addCamera(@PathVariable("idCamin") int idCamin,@RequestBody Camera camera) {
-        int id = 1 + cameraDao.getCountOfCamera();
-        cameraDao.save(new Camera(id,idCamin,camera.getNrLocuri()));
+    @PostMapping("/addCamera")
+    public int addCamera(@RequestBody Camera camera) {
+        int id;
+        if (cameraDao.getCountOfCamera() == null)
+            id = 1;
+        else
+            id = 1 + cameraDao.getCountOfCamera();
+
+        cameraDao.save(new Camera(id,camera.getIdCamin(),camera.getNrLocuri()));
         return id;
     }
 

@@ -39,8 +39,6 @@ public class CameraRepository {
         return query.getResultList();
     }
 
-
-
     public void assignCameraToCamin(Camera camera, Camin camin) {
         camera.setIdCamin(camin.getId());
         entityManager.getTransaction().begin();
@@ -51,5 +49,7 @@ public class CameraRepository {
         query.executeUpdate();
         entityManager.getTransaction().commit();
     }
+
+
 
 }

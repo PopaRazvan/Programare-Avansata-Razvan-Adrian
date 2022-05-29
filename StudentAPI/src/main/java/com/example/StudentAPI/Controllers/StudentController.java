@@ -37,11 +37,31 @@ public class StudentController {
     }
 
     @PostMapping("/addStudent")
-    public int addPerson(@RequestBody Student student)
+    public int addStudent(@RequestBody Student student)
     {
-        int id=1+studentDao.getCountOfStudent();
+        int id;
+        if (studentDao.getCountOfStudent() == null)
+            id = 1;
+        else
+            id = 1 + studentDao.getCountOfStudent();
+        System.out.println(id);
         studentDao.save(new Student(id,student.getNrMatricol(),student.getNume(),student.getPrenume(),student.getGen(),student.getAn(),student.getGrupa(),student.getMedia(),student.getDataNastere(),student.getEmail()));
         return id;
+    }
+
+    @PostMapping("/addAllStudents")
+    public String addAllStudents(@RequestBody List<Student> students)
+    {
+        for(Student student:students) {
+            int id;
+            if (studentDao.getCountOfStudent() == null)
+                id = 1;
+            else
+                id = 1 + studentDao.getCountOfStudent();
+            System.out.println(id);
+            studentDao.save(new Student(id, student.getNrMatricol(), student.getNume(), student.getPrenume(), student.getGen(), student.getAn(), student.getGrupa(), student.getMedia(), student.getDataNastere(), student.getEmail()));
+        }
+        return "Added Successfully!";
     }
 
     @PutMapping("/assignStudentToCamera/{id}")
@@ -50,7 +70,7 @@ public class StudentController {
         return "Assigment Completed!";
     }
 
-    @PutMapping("/assignStudentToCamera/{id}")
+    @PutMapping("/assignStudentToCamin/{id}")
     public String assignStudentToCamin(@PathVariable("id") int id,@RequestBody Student student){
         studentDao.assignStudentToCamin(id,student.getId());
         return "Assigment Completed!";

@@ -79,4 +79,24 @@ public class StudentRepository {
         query.executeUpdate();
         entityManager.getTransaction().commit();
     }
+
+    public void unsignStudentToCamera(Student student, Camera camera) {
+        student.setIdCamin(camera.getId());
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery(
+                        "UPDATE Student s SET s.idCamera=NULL WHERE s.id=:idStudent")
+                .setParameter("idStudent", student.getId());
+        query.executeUpdate();
+        entityManager.getTransaction().commit();
+    }
+
+    public void unsignStudentToCamin(Student student, Camin camin) {
+        student.setIdCamin(camin.getId());
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery(
+                        "UPDATE Student s SET s.idCamin=NULL WHERE s.id=:idStudent")
+                .setParameter("idStudent", student.getId());
+        query.executeUpdate();
+        entityManager.getTransaction().commit();
+    }
 }
