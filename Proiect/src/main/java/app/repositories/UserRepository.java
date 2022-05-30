@@ -26,6 +26,11 @@ public class UserRepository {
         entityManager.getTransaction().commit();
     }
 
+    public User getById(Integer id)
+    {
+        return entityManager.find(User.class, id);
+    }
+
     public boolean verifyLogin(String username, String password) {
         Query query = entityManager.createQuery(
                         "SELECT u FROM User u where u.username = :username and u.password=:password")
@@ -33,4 +38,22 @@ public class UserRepository {
                 .setParameter("password", password);
         return query.getResultList().size() == 1;
     }
+
+    public void setPassword(User user,String password)
+    {
+        user.setPassword(password);
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery(
+                        "UPDATE User u SET u.password=:password WHERE u.id=:idUser")
+                .setParameter("idUser", user.getId())
+                .setParameter("password",password);
+        query.executeUpdate();
+        entityManager.getTransaction().commit();
+    }
+
+    public User getByUsername(String username)
+    {
+        return entityManager.find(User.class, username);
+    }
+
 }

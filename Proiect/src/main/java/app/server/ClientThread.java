@@ -102,13 +102,13 @@ public class ClientThread extends Thread {
     }
 
     private String getAllStudents() {
-        StudentRepository studentRepository=new StudentRepository();
+        StudentRepository studentRepository = new StudentRepository();
         JSONPrinter jsonPrinter = new JSONPrinter();
         //TODO get students and print to json
         List<Printable> students = new ArrayList<>();
-        List<Student> listStudents=studentRepository.getAll();
+        List<Student> listStudents = studentRepository.getAll();
 
-        for(Student student:listStudents)
+        for (Student student : listStudents)
             students.add(student);
 
         jsonPrinter.setFilePath("src/main/resources/IOFiles/output.json");
@@ -122,13 +122,13 @@ public class ClientThread extends Thread {
     }
 
     private String getAllRooms() {
-        CameraRepository cameraRepository=new CameraRepository() ;
+        CameraRepository cameraRepository = new CameraRepository();
         JSONPrinter jsonPrinter = new JSONPrinter();
         //TODO get rooms and print to json
         List<Printable> cameras = new ArrayList<>();
-        List<Camera> listCameras=cameraRepository.getAll();
+        List<Camera> listCameras = cameraRepository.getAll();
 
-        for(Camera camera:listCameras)
+        for (Camera camera : listCameras)
             cameras.add(camera);
         jsonPrinter.setFilePath("src/main/resources/IOFiles/output.json");
         try {
@@ -141,12 +141,12 @@ public class ClientThread extends Thread {
     }
 
     private String getAllDorms() {
-        CaminRepository caminRepository=new CaminRepository();
+        CaminRepository caminRepository = new CaminRepository();
         JSONPrinter jsonPrinter = new JSONPrinter();
         List<Printable> camine = new ArrayList<>();
-        List<Camin> listCamine=caminRepository.getAll();
+        List<Camin> listCamine = caminRepository.getAll();
 
-        for(Camin camin:listCamine)
+        for (Camin camin : listCamine)
             camine.add(camin);
         jsonPrinter.setFilePath("src/main/resources/IOFiles/output.json");
         try {
@@ -159,7 +159,7 @@ public class ClientThread extends Thread {
     }
 
     private String addNewUser(String request) {
-        UserRepository userRepository=new UserRepository();
+        UserRepository userRepository = new UserRepository();
         request = request.substring(4);
         String[] info = request.split(",");
         User user = new User();
@@ -177,6 +177,7 @@ public class ClientThread extends Thread {
     }
 
     private String saveNewStudent(String request) {
+        StudentRepository studentRepository = new StudentRepository();
         boolean hasId = false;
         if (request.charAt(2) == 'i') {
             hasId = true;
@@ -212,7 +213,10 @@ public class ClientThread extends Thread {
             student.setDataNastere(info[8]);
             student.setEmail(info[9]);
             //TODO determine prefered student
-            student.setPreferredStudent(null);
+            int idPreferredStudent = Integer.parseInt(info[10]);
+            Student preferredStudent = studentRepository.getById(idPreferredStudent);
+            studentRepository.setPreferredStudent(student, preferredStudent);
+
         } else {
             student.setNrMatricol(info[0]);
             student.setNume(info[1]);
@@ -226,27 +230,36 @@ public class ClientThread extends Thread {
             //TODO determine prefered student
             student.setPreferredStudent(null);
         }
+
+        studentRepository.create(student);
         //TODO add student to DB
         return student.toString();
     }
 
     private String giveCredentials(String request) {//like: "gc:username"
-        request = request.substring(3);
+        UserRepository userRepository=new UserRepository();
+        StudentRepository studentRepository=new StudentRepository();
+        String username = request.substring(3);
+
+        User user=userRepository.getByUsername(username);
+        Student student=studentRepository.getById(user.getId());
+
         System.out.println("Giving credentials");
         String response;
-        //TODO get info from db (name, location, register number)
-        response = "Balan Andrei, C4 camera 6, 310045RSL449102";
+
+        response=student.getNume()+" "+student.getPrenume()+","+student.getCamin().getName()+" camera "+student.getCamera().getId()+","+student.getNrMatricol();
+
         return response;
     }
 
     private String changePassword(String request) { // like: "cp:username,new_password"
+        UserRepository userRepository = new UserRepository();
         request = request.substring(3);
         String[] credentials = request.split(",");
         String username = credentials[0];
         String pass = credentials[1];
-
-        //TODO change password
-
+        User user = userRepository.getByUsername(username);
+        userRepository.setPassword(user, pass);
         return "Done";
     }
 
@@ -281,17 +294,16 @@ public class ClientThread extends Thread {
     }
 
     private boolean isSuperUser(String username) {
-        //TODO check superuser
-        if (username.equals("admin")) {
-            return true;
-        }
-        System.out.println("|" + username + "|");
-        return false;
+        UserRepository userRepository=new UserRepository();
+        User user=userRepository.getByUsername(username);
+
+        return user.getSuperUse();
     }
 
     private boolean isValidUser(String username, String password) {
-        return true;
-        //TODO implement validation
+        UserRepository userRepository = new UserRepository();
+        return userRepository.verifyLogin(username, password);
+
     }
 
     private String addUser() throws IOException {
@@ -350,6 +362,5 @@ public class ClientThread extends Thread {
         outputStream.flush();
         return "nores";
     }
-
 
 }
