@@ -95,11 +95,18 @@ public class ClientThread extends Thread {
                 return getAllRooms();
             case RequestDecoder.GET_ALL_STUDENTS_CODE:
                 return getAllStudents();
+            case RequestDecoder.APPLY_ALGORITHM_CODE:
+                return applyAlogithm();
             //TODO implement other requests handling
 
             default:
                 return "Server received the request " + request;
         }
+    }
+
+    private String applyAlogithm() {
+        Algorithm algorithm = new Algorithm();
+        return "Done";
     }
 
     private String getAllStudents() {
@@ -249,8 +256,15 @@ public class ClientThread extends Thread {
 
         System.out.println("Giving credentials");
         String response;
+        String location;
+        if(student.getCamin() == null || student.getCamera() == null){
+            location = "Fara cazare";
+        }
+        else{
+            location = student.getCamin().getName()+" camera "+student.getCamera().getId();
+        }
 
-        response=student.getNume()+" "+student.getPrenume()+","+student.getCamin().getName()+" camera "+student.getCamera().getId()+","+student.getNrMatricol();
+        response=student.getNume()+" "+student.getPrenume()+","+location+","+student.getNrMatricol();
 
         return response;
     }

@@ -181,4 +181,8 @@ public class AdminController {
     public void getAllDorms(ActionEvent event){
         control.sendInput("gad");
     }
+
+    public void applyAlgorithm(ActionEvent event){
+        control.sendInput("aa");
+    }
 }

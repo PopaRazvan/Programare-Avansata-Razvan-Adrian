@@ -20,6 +20,7 @@ public class RequestDecoder {
     public static final int GET_ALL_ROOMS_CODE = 13;
     public static final int GET_ALL_STUDENTS_CODE = 14;
     public static final int GET_ALL_DORMS_CODE = 15;
+    public static final int APPLY_ALGORITHM_CODE = 16;
     private static RequestDecoder requestDecoder = new RequestDecoder();
 
     private ServerState serverState;

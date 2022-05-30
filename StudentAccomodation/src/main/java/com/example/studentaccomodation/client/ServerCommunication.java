@@ -80,6 +80,10 @@ public class ServerCommunication {
                 receiveFile("src/main/resources/receivedFiles/students.json");
                 //System.out.println(response);
             }
+            else if(request.equals("aa")){
+                String response = getResponse();
+                System.out.println(response);
+            }
             else{
                 String response = getResponse();
                 System.out.println(response);

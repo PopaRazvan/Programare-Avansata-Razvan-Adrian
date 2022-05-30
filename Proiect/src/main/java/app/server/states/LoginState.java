@@ -43,6 +43,9 @@ public class LoginState implements ServerState {
         if (adaptedRequest.equals("gad")) {
             return RequestDecoder.GET_ALL_DORMS_CODE;
         }
+        if (adaptedRequest.equals("aa")) {
+            return RequestDecoder.APPLY_ALGORITHM_CODE;
+        }
         return RequestDecoder.UNKNOWN_REQUEST_CODE;
     }
 }

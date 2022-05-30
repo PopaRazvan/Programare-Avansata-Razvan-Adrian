@@ -44,7 +44,6 @@ public class LoginController {
             System.out.println("Received: " + response);
             if(response.equals("ILU")){
                 loginController.unsuccessfulLogin();
-
             }
             else if(response.equals("VLU")){
                 control.setCurrentUser(username);
