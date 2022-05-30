@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class JSONPrinter {
+public class JSONPrinter { //Class for managing output of Printable objects to files
     private ObjectMapper objectMapper;
     private String filePath;
 
@@ -31,7 +31,7 @@ public class JSONPrinter {
     }
 
 
-    public void printToFile(List<Printable> object) throws IOException {
+    public void printToFile(List<Printable> object) throws IOException { //Prints to file a list of any Printable objects
         objectMapper.writeValue(new File(filePath), object);
     }
 

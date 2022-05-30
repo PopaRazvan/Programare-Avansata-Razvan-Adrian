@@ -22,7 +22,7 @@ public class LoginState implements ServerState {
         if (adaptedRequest.startsWith("cp:")) {
             return RequestDecoder.CHANGE_PASSWORD_CODE;
         }
-        if (adaptedRequest.startsWith("gc:")) {
+        if (adaptedRequest.startsWith("gc:")) { //give information about user
             return RequestDecoder.GIVE_CREDENTIALS_CODE;
         }
         if (adaptedRequest.startsWith("snis:") || adaptedRequest.startsWith("sns:")) { //"save new id student" , "save new student"

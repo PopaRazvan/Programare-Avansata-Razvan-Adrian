@@ -4,6 +4,7 @@ import app.server.states.LoginState;
 import app.server.states.ServerState;
 
 public class RequestDecoder {
+    //Static codes for determining user requests
     public static final int UNKNOWN_REQUEST_CODE = 0;
     public static final int STOP_CODE = 1;
     public static final int CLIENT_EXIT_CODE = 2;

@@ -79,7 +79,7 @@ public class AdminController { //Class that controls the admin screen
         dataNotFull.setVisible(false);
         wrongDataStudent.setVisible(false);
         if(registerNr.getText().isEmpty() || sName.getText().isEmpty() || sSurname.getText().isEmpty() || sYear.getText().isEmpty() || sGender.getText().isEmpty()
-                || sGroup.getText().isEmpty() || avgMark.getText().isEmpty() || birthDate.getText().isEmpty() || prefStudent.getText().isEmpty()){ //Verifying for null fields
+                || sGroup.getText().isEmpty() || avgMark.getText().isEmpty() || birthDate.getText().isEmpty() || studentId.getText().isEmpty() || prefStudent.getText().isEmpty()){ //Verifying for null fields
             dataNotFull.setVisible(true);
             return;
         }

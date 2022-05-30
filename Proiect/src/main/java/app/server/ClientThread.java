@@ -25,8 +25,6 @@ public class ClientThread extends Thread {
     private boolean servingClient;
     private boolean adminUser;
 
-    //TODO link with database
-    //TODO implement current user / authorize admin user
     public ClientThread(Socket socket, ServerSocket serverSocket) {
         this.socket = socket;
         this.serverSocket = serverSocket;
@@ -40,7 +38,7 @@ public class ClientThread extends Thread {
         try {
             while (servingClient) { //Main While loop
                 String request = readFromClient();
-                String response = processRequest(request);
+                String response = processRequest(request); //Generating the response based on request
                 sendResponse(response);
             }
 
@@ -55,11 +53,7 @@ public class ClientThread extends Thread {
         }
     }
 
-    private String processRequest(String request) throws IOException {
-//            Implementation idea:
-//            - Terminal used only for logging in to the server via username and password
-//            - If logged in as admin then provide admin abilities
-//            - If logged in as client then provide interface for viewing data
+    private String processRequest(String request) throws IOException { //Handling the request
         switch (requestDecoder.decodeRequest(request)) {
             case RequestDecoder.STOP_CODE:
                 serverSocket.close();
@@ -96,23 +90,21 @@ public class ClientThread extends Thread {
             case RequestDecoder.GET_ALL_STUDENTS_CODE:
                 return getAllStudents();
             case RequestDecoder.APPLY_ALGORITHM_CODE:
-                return applyAlogithm();
-            //TODO implement other requests handling
+                return applyAlgorithm();
 
             default:
                 return "Server received the request " + request;
         }
     }
 
-    private String applyAlogithm() {
+    private String applyAlgorithm() { //Apply the auto matching algorithm
         Algorithm algorithm = new Algorithm();
         return "Done";
     }
 
-    private String getAllStudents() {
+    private String getAllStudents() { //Sends all students from DB as a json file
         StudentRepository studentRepository = new StudentRepository();
         JSONPrinter jsonPrinter = new JSONPrinter();
-        //TODO get students and print to json
         List<Printable> students = new ArrayList<>();
         List<Student> listStudents = studentRepository.getAll();
 
@@ -129,10 +121,9 @@ public class ClientThread extends Thread {
         return "nores"; //Doesn't send anything to server
     }
 
-    private String getAllRooms() {
+    private String getAllRooms() { //Sends all rooms from DB as a json file
         CameraRepository cameraRepository = new CameraRepository();
         JSONPrinter jsonPrinter = new JSONPrinter();
-        //TODO get rooms and print to json
         List<Printable> cameras = new ArrayList<>();
         List<Camera> listCameras = cameraRepository.getAll();
 
@@ -148,7 +139,7 @@ public class ClientThread extends Thread {
         return "nores"; //Doesn't send anything to server
     }
 
-    private String getAllDorms() {
+    private String getAllDorms() { //Sends all dorms (camine) from DB as a json file
         CaminRepository caminRepository = new CaminRepository();
         JSONPrinter jsonPrinter = new JSONPrinter();
         List<Printable> camine = new ArrayList<>();
@@ -166,7 +157,7 @@ public class ClientThread extends Thread {
         return "nores"; //Doesn't send anything to server
     }
 
-    private String addNewUser(String request) {
+    private String addNewUser(String request) { //Adds new user to DB
         UserRepository userRepository = new UserRepository();
         request = request.substring(4);
         String[] info = request.split(",");
@@ -180,14 +171,13 @@ public class ClientThread extends Thread {
             user.setSuperUse(false);
         }
         userRepository.create(user);
-        //TODO add user to DB
         return user.toString();
     }
 
-    private String saveNewStudent(String request) {
+    private String saveNewStudent(String request) { //Saves a new student to the DB
         StudentRepository studentRepository = new StudentRepository();
         boolean hasId = false;
-        if (request.charAt(2) == 'i') {
+        if (request.charAt(2) == 'i') { //Checking if client passed the ID
             hasId = true;
             request = request.substring(5);
         } else {
@@ -220,7 +210,6 @@ public class ClientThread extends Thread {
             student.setMedia(Double.parseDouble(info[7]));
             student.setDataNastere(info[8]);
             student.setEmail(info[9]);
-            //TODO determine prefered student
             int idPreferredStudent = Integer.parseInt(info[10]);
             Student preferredStudent = studentRepository.getById(idPreferredStudent);
             studentRepository.setPreferredStudent(student, preferredStudent);
@@ -235,7 +224,6 @@ public class ClientThread extends Thread {
             student.setMedia(Double.parseDouble(info[6]));
             student.setDataNastere(info[7]);
             student.setEmail(info[8]);
-            //TODO determine prefered student
             student.setPreferredStudent(null);
         }
 
