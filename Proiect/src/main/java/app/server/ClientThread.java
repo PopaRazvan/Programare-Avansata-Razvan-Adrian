@@ -1,10 +1,10 @@
 package app.server;
 
-import app.entities.Camera;
-import app.entities.Printable;
-import app.entities.Student;
-import app.entities.User;
+import app.entities.*;
 import app.parsers.JSONPrinter;
+import app.repositories.CameraRepository;
+import app.repositories.CaminRepository;
+import app.repositories.StudentRepository;
 import app.server.states.AdminState;
 import app.server.states.ClientState;
 import app.server.states.LoginState;
@@ -101,14 +101,18 @@ public class ClientThread extends Thread {
     }
 
     private String getAllStudents() {
+        StudentRepository studentRepository=new StudentRepository();
         JSONPrinter jsonPrinter = new JSONPrinter();
         //TODO get students and print to json
         List<Printable> students = new ArrayList<>();
-        Camera camera = new Camera(1, 2, 3);
+        List<Student> listStudents=studentRepository.getAll();
+
+        for(Student student:listStudents)
+            students.add(student);
+
         jsonPrinter.setFilePath("src/main/resources/IOFiles/output.json");
         try {
-            jsonPrinter.printToFile(camera);
-            //jsonPrinter.printToFile(students);
+            jsonPrinter.printToFile(students);
             sendFile(jsonPrinter.getFilePath());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -117,12 +121,17 @@ public class ClientThread extends Thread {
     }
 
     private String getAllRooms() {
+        CameraRepository cameraRepository=new CameraRepository() ;
         JSONPrinter jsonPrinter = new JSONPrinter();
         //TODO get rooms and print to json
-        Camera camera = new Camera(1, 2, 3);
+        List<Printable> cameras = new ArrayList<>();
+        List<Camera> listCameras=cameraRepository.getAll();
+
+        for(Camera camera:listCameras)
+            cameras.add(camera);
         jsonPrinter.setFilePath("src/main/resources/IOFiles/output.json");
         try {
-            jsonPrinter.printToFile(camera);
+            jsonPrinter.printToFile(cameras);
             sendFile(jsonPrinter.getFilePath());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -131,12 +140,16 @@ public class ClientThread extends Thread {
     }
 
     private String getAllDorms() {
+        CaminRepository caminRepository=new CaminRepository();
         JSONPrinter jsonPrinter = new JSONPrinter();
-        //TODO get dorms and print to json
-        Camera camera = new Camera(1, 2, 3);
+        List<Printable> camine = new ArrayList<>();
+        List<Camin> listCamine=caminRepository.getAll();
+
+        for(Camin camin:listCamine)
+            camine.add(camin);
         jsonPrinter.setFilePath("src/main/resources/IOFiles/output.json");
         try {
-            jsonPrinter.printToFile(camera);
+            jsonPrinter.printToFile(camine);
             sendFile(jsonPrinter.getFilePath());
         } catch (IOException e) {
             throw new RuntimeException(e);

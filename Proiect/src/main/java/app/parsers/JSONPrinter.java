@@ -30,10 +30,12 @@ public class JSONPrinter {
 
     }
 
+
     public void printToFile(List<Printable> object) throws IOException {
         objectMapper.writeValue(new File(filePath), object);
-
     }
+
+
 
     public void printToFile(Student object) throws IOException {
         objectMapper.writeValue(new File(filePath), object);

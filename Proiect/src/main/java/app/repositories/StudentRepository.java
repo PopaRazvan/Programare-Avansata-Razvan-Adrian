@@ -2,6 +2,7 @@ package app.repositories;
 
 import app.entities.Camera;
 import app.entities.Camin;
+import app.entities.Printable;
 import app.entities.Student;
 import app.manager.Manager;
 
@@ -33,6 +34,7 @@ public class StudentRepository {
         Query query = entityManager.createQuery("SELECT s FROM Student s");
         return query.getResultList();
     }
+
 
     public Student getById(Integer id) {
         return entityManager.find(Student.class, id);
