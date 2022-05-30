@@ -1,5 +1,10 @@
 package app.server;
 
+import app.entities.Camera;
+import app.entities.Printable;
+import app.entities.Student;
+import app.entities.User;
+import app.parsers.JSONPrinter;
 import app.server.states.AdminState;
 import app.server.states.ClientState;
 import app.server.states.LoginState;
@@ -7,6 +12,8 @@ import app.server.states.LoginState;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClientThread extends Thread {
 
@@ -76,11 +83,135 @@ public class ClientThread extends Thread {
                 return changePassword(request);
             case RequestDecoder.GIVE_CREDENTIALS_CODE:
                 return giveCredentials(request);
+            case RequestDecoder.SAVE_NEW_STUDENT_CODE:
+                return saveNewStudent(request);
+            case RequestDecoder.ADD_NEW_USER_CODE:
+                return addNewUser(request);
+            case RequestDecoder.GET_ALL_DORMS_CODE:
+                return getAllDorms();
+            case RequestDecoder.GET_ALL_ROOMS_CODE:
+                return getAllRooms();
+            case RequestDecoder.GET_ALL_STUDENTS_CODE:
+                return getAllStudents();
             //TODO implement other requests handling
 
             default:
                 return "Server received the request " + request;
         }
+    }
+
+    private String getAllStudents() {
+        JSONPrinter jsonPrinter = new JSONPrinter();
+        //TODO get students and print to json
+        List<Printable> students = new ArrayList<>();
+        Camera camera = new Camera(1, 2, 3);
+        jsonPrinter.setFilePath("src/main/resources/IOFiles/output.json");
+        try {
+            jsonPrinter.printToFile(camera);
+            //jsonPrinter.printToFile(students);
+            sendFile(jsonPrinter.getFilePath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return "nores"; //Doesn't send anything to server
+    }
+
+    private String getAllRooms() {
+        JSONPrinter jsonPrinter = new JSONPrinter();
+        //TODO get rooms and print to json
+        Camera camera = new Camera(1, 2, 3);
+        jsonPrinter.setFilePath("src/main/resources/IOFiles/output.json");
+        try {
+            jsonPrinter.printToFile(camera);
+            sendFile(jsonPrinter.getFilePath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return "nores"; //Doesn't send anything to server
+    }
+
+    private String getAllDorms() {
+        JSONPrinter jsonPrinter = new JSONPrinter();
+        //TODO get dorms and print to json
+        Camera camera = new Camera(1, 2, 3);
+        jsonPrinter.setFilePath("src/main/resources/IOFiles/output.json");
+        try {
+            jsonPrinter.printToFile(camera);
+            sendFile(jsonPrinter.getFilePath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return "nores"; //Doesn't send anything to server
+    }
+
+    private String addNewUser(String request) {
+        request = request.substring(4);
+        String[] info = request.split(",");
+        User user = new User();
+        user.setId(Integer.parseInt(info[0]));
+        user.setUsername(info[1]);
+        user.setPassword(info[2]);
+        if (info[3].equals("t")) {
+            user.setSuperUse(true);
+        } else {
+            user.setSuperUse(false);
+        }
+        //TODO add user to DB
+        return user.toString();
+    }
+
+    private String saveNewStudent(String request) {
+        boolean hasId = false;
+        if (request.charAt(2) == 'i') {
+            hasId = true;
+            request = request.substring(5);
+        } else {
+            request = request.substring(4);
+        }
+        Student student = new Student();
+        String[] info = request.split(",");
+        /*
+        Info: (hasId)
+        0 - id
+        1 - register
+        2 - name
+        3 - surname
+        4 - gender
+        5 - year
+        6 - group
+        7 - mark
+        8 - birthdate
+        9 - email
+        10 - prefStud
+        */
+        if (hasId) {
+            student.setId(Integer.parseInt(info[0]));
+            student.setNrMatricol(info[1]);
+            student.setNume(info[2]);
+            student.setPrenume(info[3]);
+            student.setGen(info[4]);
+            student.setAn(Integer.parseInt(info[5]));
+            student.setGrupa(info[6]);
+            student.setMedia(Double.parseDouble(info[7]));
+            student.setDataNastere(info[8]);
+            student.setEmail(info[9]);
+            //TODO determine prefered student
+            student.setPreferredStudent(null);
+        } else {
+            student.setNrMatricol(info[0]);
+            student.setNume(info[1]);
+            student.setPrenume(info[2]);
+            student.setGen(info[3]);
+            student.setAn(Integer.parseInt(info[4]));
+            student.setGrupa(info[5]);
+            student.setMedia(Double.parseDouble(info[6]));
+            student.setDataNastere(info[7]);
+            student.setEmail(info[8]);
+            //TODO determine prefered student
+            student.setPreferredStudent(null);
+        }
+        //TODO add student to DB
+        return student.toString();
     }
 
     private String giveCredentials(String request) {//like: "gc:username"
@@ -134,6 +265,7 @@ public class ClientThread extends Thread {
     }
 
     private boolean isSuperUser(String username) {
+        //TODO check superuser
         if (username.equals("admin")) {
             return true;
         }

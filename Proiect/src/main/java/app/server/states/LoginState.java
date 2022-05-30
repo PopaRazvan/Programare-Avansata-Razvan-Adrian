@@ -25,6 +25,24 @@ public class LoginState implements ServerState {
         if (adaptedRequest.startsWith("gc:")) {
             return RequestDecoder.GIVE_CREDENTIALS_CODE;
         }
+        if (adaptedRequest.startsWith("snis:") || adaptedRequest.startsWith("sns:")) { //"save new id student" , "save new student"
+            return RequestDecoder.SAVE_NEW_STUDENT_CODE;
+        }
+        if (adaptedRequest.startsWith("anu:")) {
+            return RequestDecoder.ADD_NEW_USER_CODE;
+        }
+        if (adaptedRequest.equals("stop")) {
+            return RequestDecoder.STOP_CODE;
+        }
+        if (adaptedRequest.equals("gar")) {
+            return RequestDecoder.GET_ALL_ROOMS_CODE;
+        }
+        if (adaptedRequest.equals("gas")) {
+            return RequestDecoder.GET_ALL_STUDENTS_CODE;
+        }
+        if (adaptedRequest.equals("gad")) {
+            return RequestDecoder.GET_ALL_DORMS_CODE;
+        }
         return RequestDecoder.UNKNOWN_REQUEST_CODE;
     }
 }

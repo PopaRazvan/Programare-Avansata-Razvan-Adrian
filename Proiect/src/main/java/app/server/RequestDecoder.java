@@ -15,7 +15,11 @@ public class RequestDecoder {
     public static final int LOGIN_CREDENTIALS_CODE = 8;
     public static final int CHANGE_PASSWORD_CODE = 9;
     public static final int GIVE_CREDENTIALS_CODE = 10;
-
+    public static final int SAVE_NEW_STUDENT_CODE = 11;
+    public static final int ADD_NEW_USER_CODE = 12;
+    public static final int GET_ALL_ROOMS_CODE = 13;
+    public static final int GET_ALL_STUDENTS_CODE = 14;
+    public static final int GET_ALL_DORMS_CODE = 15;
     private static RequestDecoder requestDecoder = new RequestDecoder();
 
     private ServerState serverState;
