@@ -5,6 +5,7 @@ import app.parsers.JSONPrinter;
 import app.repositories.CameraRepository;
 import app.repositories.CaminRepository;
 import app.repositories.StudentRepository;
+import app.repositories.UserRepository;
 import app.server.states.AdminState;
 import app.server.states.ClientState;
 import app.server.states.LoginState;
@@ -158,6 +159,7 @@ public class ClientThread extends Thread {
     }
 
     private String addNewUser(String request) {
+        UserRepository userRepository=new UserRepository();
         request = request.substring(4);
         String[] info = request.split(",");
         User user = new User();
@@ -169,6 +171,7 @@ public class ClientThread extends Thread {
         } else {
             user.setSuperUse(false);
         }
+        userRepository.create(user);
         //TODO add user to DB
         return user.toString();
     }
