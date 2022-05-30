@@ -102,6 +102,13 @@ public class LoginController {
                 throw new RuntimeException(e);
             }
         }
+        if(control.drawAdmin){
+            try {
+                drawAdminInterface(event);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private void successfulLogin(){
@@ -145,5 +152,18 @@ public class LoginController {
         Scene scene = new Scene(root, 810, 700);
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+    }
+
+    private void drawAdminInterface(ActionEvent event) throws IOException {
+        control.drawAdmin = false;
+        Parent root = FXMLLoader.load(HelloApplication.class.getResource("admin.fxml"));
+        Scene scene = new Scene(root, 810, 700);
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+    public static void exitClient(){
+        Control controller = Control.getInstance();
+        controller.sendInput("exit");
     }
 }

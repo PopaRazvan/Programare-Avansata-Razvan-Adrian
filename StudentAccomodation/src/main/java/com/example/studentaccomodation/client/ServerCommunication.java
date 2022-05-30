@@ -41,7 +41,7 @@ public class ServerCommunication {
             System.out.println("Sent to server");
             if(request.toLowerCase().equals("exit")) running = false;
             else if(request.equals("send file")){
-                receiveFile();
+                receiveFile("src/main/resources/receivedFiles/file.txt");
             }
             else if(request.startsWith("l:")){
                 String response = getResponse();
@@ -56,6 +56,30 @@ public class ServerCommunication {
                 String response = getResponse();
                 System.out.println(response);
             }
+            else if(request.startsWith("sn")){
+                String response = getResponse();
+                System.out.println(response);
+            }
+            else if(request.startsWith("anu:")){
+                String response = getResponse();
+                System.out.println(response);
+            }
+            else if(request.equals("stop")){
+                String response = getResponse();
+                System.out.println(response);
+            }
+            else if(request.equals("gar")){
+                receiveFile("src/main/resources/receivedFiles/rooms.json");
+
+            }
+            else if(request.equals("gad")){
+                receiveFile("src/main/resources/receivedFiles/dorms.json");
+
+            }
+            else if(request.equals("gas")){
+                receiveFile("src/main/resources/receivedFiles/students.json");
+                //System.out.println(response);
+            }
             else{
                 String response = getResponse();
                 System.out.println(response);
@@ -64,8 +88,7 @@ public class ServerCommunication {
         }
     }
 
-    private void receiveFile() throws IOException {
-        String path = "src/main/resources/receivedFiles/file.txt";
+    private void receiveFile(String path) throws IOException {
         int bytesRead;
         int current = 0;
         int FILE_SIZE = 6022386;
