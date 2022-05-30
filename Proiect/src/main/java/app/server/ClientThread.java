@@ -231,10 +231,11 @@ public class ClientThread extends Thread {
         studentRepository.create(student);
         Algorithm algorithm=new Algorithm();
 
-        return student.toString();
+        return student.toString(); //returning to client the saved student data
     }
 
-    private String giveCredentials(String request) {//like: "gc:username"
+    private String giveCredentials(String request) { //Gives to user information about its linked student
+                                                     //request is like: "gc:username"
         UserRepository userRepository=new UserRepository();
         StudentRepository studentRepository=new StudentRepository();
         String username = request.substring(3);
@@ -245,7 +246,7 @@ public class ClientThread extends Thread {
         System.out.println("Giving credentials");
         String response;
         String location;
-        if(student.getCamin() == null || student.getCamera() == null){
+        if(student.getCamin() == null || student.getCamera() == null){ //if a student has no room then location is set accordingly
             location = "Fara cazare";
         }
         else{
@@ -257,7 +258,8 @@ public class ClientThread extends Thread {
         return response;
     }
 
-    private String changePassword(String request) { // like: "cp:username,new_password"
+    private String changePassword(String request) { //Changes the password for the current user
+                                                    // like: "cp:username,new_password"
         UserRepository userRepository = new UserRepository();
         request = request.substring(3);
         String[] credentials = request.split(",");
@@ -268,7 +270,7 @@ public class ClientThread extends Thread {
         return "Done";
     }
 
-    private String loginCredentials(String request) {
+    private String loginCredentials(String request) { //Tries to authenticate and authorize the client
         request = request.substring(2);
         String[] credentials = request.split("\\|");
         String username;
@@ -285,32 +287,33 @@ public class ClientThread extends Thread {
         }
 
         if (username == null || username.isEmpty()) {
-            return "ILU";
+            return "ILU"; //Tells the client "INVALID LOGIN USER" if no username was passed
         }
         if (isValidUser(username, password)) {
             if (isSuperUser(username)) {
                 System.out.println("Admin State:");
-                return "VLA"; //valid login admin
+                return "VLA"; ////Tells the client "VALID LOGIN ADMIN"
             }
             System.out.println("Client State:");
-            return "VLU"; //valid login user
+            return "VLU"; ////Tells the client "VALID LOGIN USER"
         }
-        return "ILU"; //invalid login user
+        return "ILU"; //Tells the client "INVALID LOGIN USER"
     }
 
-    private boolean isSuperUser(String username) {
+    private boolean isSuperUser(String username) { //Determines if user is a superuser
         UserRepository userRepository=new UserRepository();
         User user=userRepository.getByUsername(username);
 
         return user.getSuperUse();
     }
 
-    private boolean isValidUser(String username, String password) {
+    private boolean isValidUser(String username, String password) { //Determines if user is present in DB
         UserRepository userRepository = new UserRepository();
         return userRepository.verifyLogin(username, password);
 
     }
 
+    //OUTDATED
     private String addUser() throws IOException {
         sendResponse("Provide username:");
         String name = readFromClient();
@@ -319,12 +322,12 @@ public class ClientThread extends Thread {
         return "Added";
     }
 
-    private String readFromClient() throws IOException {
+    private String readFromClient() throws IOException { //Reads message from client through socket
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         return in.readLine();
     }
 
-    private void sendResponse(String response) throws IOException {
+    private void sendResponse(String response) throws IOException { //Sends message to client through socket
         if (response.equals("nores")) return;
         response += "*";
         PrintWriter out = new PrintWriter(socket.getOutputStream());
@@ -332,6 +335,7 @@ public class ClientThread extends Thread {
         out.flush();
     }
 
+    //OUTDATED
     private String login() throws IOException {
         sendResponse("Provide username:");
         String username = readFromClient();
@@ -343,16 +347,17 @@ public class ClientThread extends Thread {
         return "Logged in!";
     }
 
+    //OUTDATED
     private String logout() throws IOException {
         requestDecoder.setState(new LoginState());
         return "Logged out!";
     }
-
+    //OUTDATED
     private String launchInterface() {
         return "Launching app...";
     }
 
-    private String sendFile(String path) throws IOException {
+    private String sendFile(String path) throws IOException { //Sends a desired file to client through socket
         FileInputStream fileInputStream = null;
         BufferedInputStream bufferedInputStream = null;
         OutputStream outputStream = null;
