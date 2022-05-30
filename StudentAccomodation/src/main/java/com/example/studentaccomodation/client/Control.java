@@ -1,6 +1,6 @@
 package com.example.studentaccomodation.client;
 
-public class Control {
+public class Control { //Class for managing input and responses from server to client and client UI and vice-versa
 
     volatile private String userInput;
     volatile private String serverResponse;

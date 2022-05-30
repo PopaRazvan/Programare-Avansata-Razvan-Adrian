@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Client extends Thread{
+public class Client extends Thread{ //Class that defines a client side communication
     private String serverAddress;
     private int PORT;
 
@@ -21,11 +21,11 @@ public class Client extends Thread{
         this.PORT = 8100;
     }
 
-    public void connect(){
+    public void connect(){//Connects to server
 
         try{
             ServerCommunication serverComm = new ServerCommunication(serverAddress, PORT);
-            serverComm.beginCommunication();
+            serverComm.beginCommunication(); //Start server-client interaction
         }
         catch(IOException e){
             System.out.println(e.getMessage());
@@ -33,7 +33,7 @@ public class Client extends Thread{
     }
 
     @Override
-    public void run() {
+    public void run() { //Starts server connection on a separate thread
         connect();
     }
 }

@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AdminController {
-    private Control control = Control.getInstance();
+public class AdminController { //Class that controls the admin screen
+    private Control control = Control.getInstance(); //Class to manage asynchronous communication between GUI and client logic
 
     @FXML
     private Label dataNotFull;
@@ -66,7 +66,7 @@ public class AdminController {
         wrongDataUser.setVisible(false);
         wrongDataStudent.setVisible(false);
     }
-    public void logout(ActionEvent event) throws IOException {
+    public void logout(ActionEvent event) throws IOException { //Logs out of the application and returns to log in screen
         control.setCurrentUser("none");
         control.setCurrentPassword("none");
         Parent root = FXMLLoader.load(HelloApplication.class.getResource("hello-view.fxml"));
@@ -75,19 +75,19 @@ public class AdminController {
         stage.setScene(scene);
     }
 
-    public void saveStudent(ActionEvent event){
+    public void saveStudent(ActionEvent event){ //Tells the server to save a student with the given data
         dataNotFull.setVisible(false);
         wrongDataStudent.setVisible(false);
         if(registerNr.getText().isEmpty() || sName.getText().isEmpty() || sSurname.getText().isEmpty() || sYear.getText().isEmpty() || sGender.getText().isEmpty()
-                || sGroup.getText().isEmpty() || avgMark.getText().isEmpty() || birthDate.getText().isEmpty() || prefStudent.getText().isEmpty()){
+                || sGroup.getText().isEmpty() || avgMark.getText().isEmpty() || birthDate.getText().isEmpty() || prefStudent.getText().isEmpty()){ //Verifying for null fields
             dataNotFull.setVisible(true);
             return;
         }
-        if(!studentId.getText().isEmpty() && !isInteger(studentId.getText())){
+        if(!studentId.getText().isEmpty() && !isInteger(studentId.getText())){//Checks for data type
             wrongDataStudent.setVisible(true);
             return;
         }
-        if(!isInteger(sYear.getText()) || !isDouble(avgMark.getText()) || !isInteger(prefStudent.getText())){
+        if(!isInteger(sYear.getText()) || !isDouble(avgMark.getText()) || !isInteger(prefStudent.getText())){//Checks for data type
             wrongDataStudent.setVisible(true);
             return;
         }
@@ -115,14 +115,14 @@ public class AdminController {
         control.sendInput(input);
     }
 
-    public void addNewUser(ActionEvent event){
+    public void addNewUser(ActionEvent event){ //Tells the server to add a new user with the given data
         wrongDataUser.setVisible(false);
         userDataIncomplete.setVisible(false);
-        if(userId.getText().isEmpty() || username.getText().isEmpty() || userPassword.getText().isEmpty()){
+        if(userId.getText().isEmpty() || username.getText().isEmpty() || userPassword.getText().isEmpty()){ //Verifying for null fields
             userDataIncomplete.setVisible(true);
             return;
         }
-        if(!isInteger(userId.getText())){
+        if(!isInteger(userId.getText())){ //Checks for data type
             wrongDataUser.setVisible(true);
             return;
         }
@@ -142,7 +142,7 @@ public class AdminController {
         control.sendInput(input);
     }
 
-    private boolean isDouble(String value){
+    private boolean isDouble(String value){ //Checks if String is a Double
         if (value == null) {
             return false;
         }
@@ -154,7 +154,7 @@ public class AdminController {
         return true;
     }
 
-    private  boolean isInteger(String value){
+    private  boolean isInteger(String value){ //Checks if String is an Integer
         if (value == null) {
             return false;
         }
@@ -182,7 +182,7 @@ public class AdminController {
         control.sendInput("gad");
     }
 
-    public void applyAlgorithm(ActionEvent event){
+    public void applyAlgorithm(ActionEvent event){ //Tells the server to apply the matching algorithm
         control.sendInput("aa");
     }
 }

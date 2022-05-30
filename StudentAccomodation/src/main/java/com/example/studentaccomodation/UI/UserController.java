@@ -17,9 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserController {
+public class UserController { //Class that controls the user screen
 
-    class Fetcher extends Thread {
+    class Fetcher extends Thread { //Class that gets data from the server on a separate thread
         private UserController userController;
 
         public Fetcher(UserController userController) {
@@ -54,11 +54,6 @@ public class UserController {
     private volatile List<String> credentials = new ArrayList<>();
 
     public void initialize() {
-//        try {
-//            Thread.sleep(300);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
         Fetcher fetcher = new Fetcher(this);
         fetcher.start();
         try {
@@ -71,7 +66,7 @@ public class UserController {
         registerNumber.setText(credentials.get(2));
     }
 
-    public void logout(ActionEvent event) throws IOException {
+    public void logout(ActionEvent event) throws IOException { //Logs out of application and returns to Log in screen
         control.setCurrentUser("none");
         control.setCurrentPassword("none");
         Parent root = FXMLLoader.load(HelloApplication.class.getResource("hello-view.fxml"));
@@ -80,7 +75,7 @@ public class UserController {
         stage.setScene(scene);
     }
 
-    public void changePassword(ActionEvent event) {
+    public void changePassword(ActionEvent event) { //Sets a new password for the user
         String password = newPassword.getText();
         control.sendInput("cp:" + control.getCurrentUser() + "," + password);
         newPassword.setText("");

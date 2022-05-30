@@ -25,74 +25,67 @@ public class ServerCommunication {
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         control = Control.getInstance();
-//      Implementation idea:
-//        - Terminal used only for logging in to the server via username and password
-//        - If logged in as admin then provide admin abilities
-//        - If logged in as com.example.studentaccomodation.client then provide interface for viewing data
     }
 
-    public void beginCommunication() throws IOException {
+    public void beginCommunication() throws IOException { //Communicates with the server
+                                //Establishes a communication between client's UI and server logic
 
-        while(running){
-            //request = clientInput.readLine();
-            request = control.receiveInput();
+        while(running){ //Main interaction with the server
+            request = control.receiveInput(); //Waiting for client input (from UI)
             System.out.println("Read: " + request);
-            out.println(request);
+            out.println(request); //Sends the request to the server
             System.out.println("Sent to server");
             if(request.toLowerCase().equals("exit")) running = false;
             else if(request.equals("send file")){
                 receiveFile("src/main/resources/receivedFiles/file.txt");
             }
-            else if(request.startsWith("l:")){
+            else if(request.startsWith("l:")){ //Treats sending a login request
                 String response = getResponse();
                 control.sendResponse(response);
                 System.out.println(response);
             }
-            else if(request.startsWith("gc:")){
+            else if(request.startsWith("gc:")){//Treats sending a get credentials (info) of the current user
                 String response = getResponse();
                 control.sendResponse(response);
             }
-            else if(request.startsWith("cp:")){
+            else if(request.startsWith("cp:")){//Treats sending a change password request
                 String response = getResponse();
                 System.out.println(response);
             }
-            else if(request.startsWith("sn")){
+            else if(request.startsWith("sn")){//Treats sending a save new student request
                 String response = getResponse();
                 System.out.println(response);
             }
-            else if(request.startsWith("anu:")){
+            else if(request.startsWith("anu:")){//Treats sending an add new user request
                 String response = getResponse();
                 System.out.println(response);
             }
-            else if(request.equals("stop")){
+            else if(request.equals("stop")){//Treats sending a stop server request
                 String response = getResponse();
                 System.out.println(response);
             }
-            else if(request.equals("gar")){
+            else if(request.equals("gar")){//Treats sending a get all rooms request
                 receiveFile("src/main/resources/receivedFiles/rooms.json");
-
             }
-            else if(request.equals("gad")){
+            else if(request.equals("gad")){//Treats sending a get all dorms request
                 receiveFile("src/main/resources/receivedFiles/dorms.json");
-
             }
-            else if(request.equals("gas")){
+            else if(request.equals("gas")){//Treats sending a get all students request
                 receiveFile("src/main/resources/receivedFiles/students.json");
-                //System.out.println(response);
             }
-            else if(request.equals("aa")){
+            else if(request.equals("aa")){//Treats sending an apply algorithm request
                 String response = getResponse();
                 System.out.println(response);
             }
-            else{
+            else{//Treats unhandled requests
                 String response = getResponse();
                 System.out.println(response);
             }
-            System.out.println("End loop");
+            System.out.println("Communication success...");
         }
     }
 
-    private void receiveFile(String path) throws IOException {
+    private void receiveFile(String path) throws IOException { //Method for receiving a file through socket
         int bytesRead;
         int current = 0;
         int FILE_SIZE = 6022386;
@@ -110,11 +103,10 @@ public class ServerCommunication {
         bufferedOutputStream.flush();
         fileOutputStream.close();
         bufferedOutputStream.close();
-        //System.out.println(getResponse());
-        System.out.println("Done!");
+        System.out.println("File received!");
     }
 
-    private String getResponse() throws IOException {
+    private String getResponse() throws IOException { //Method for receiving server response
         String response = new String();
         while (true){
             char charBuff = (char)in.read();

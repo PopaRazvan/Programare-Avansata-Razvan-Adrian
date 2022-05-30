@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException { //Sets up the main stage of the application
         Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
         Scene scene = new Scene(root, 810, 700);
         stage.setTitle("Student Accommodation");
@@ -28,8 +28,7 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         Client client = new Client();
-        client.start();
+        client.start(); //Runs the client-server communication
         launch();
-//        System.out.println("Handling here");
     }
 }

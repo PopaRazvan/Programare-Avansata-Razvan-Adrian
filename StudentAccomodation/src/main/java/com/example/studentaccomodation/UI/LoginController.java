@@ -24,9 +24,9 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-public class LoginController {
+public class LoginController { //Class that controls the login screen
 
-    private class Logger extends Thread{
+    private class Logger extends Thread{ //Separate class to manage login and authorization on a separate thread
         private LoginController loginController;
 
         public Logger(LoginController loginController) {
@@ -56,11 +56,12 @@ public class LoginController {
                 control.setCurrentPassword(password);
                 loginController.successfulLogin();
                 control.drawAdmin = true;
-                System.out.println("OK");
             }
-            System.out.println("End");
+            System.out.println("End Transmission");
         }
     }
+
+//    FXML injections
     @FXML
     private PasswordField userPassword;
     @FXML
@@ -77,7 +78,7 @@ public class LoginController {
     private Parent root;
     private Scene scene;
 
-    private Control control = Control.getInstance();
+    private Control control = Control.getInstance(); //Class to manage asynchronous communication between GUI and client logic
 
     private String localInput;
     private String localResponse = "null";
@@ -87,7 +88,7 @@ public class LoginController {
         failedLoginLabel.setVisible(false);
     }
 
-    public void login(ActionEvent event){
+    public void login(ActionEvent event){ //Logging in into the application after the authorization was complete
         Logger logger = new Logger(this);
         logger.start();
         try {
@@ -111,21 +112,21 @@ public class LoginController {
         }
     }
 
-    private void successfulLogin(){
+    private void successfulLogin(){ //Feedback for successful login
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(700));
         fadeTransition.setNode(successLoginLabel);
         fadeTransition.setFromValue(1);
         textTimer(fadeTransition, successLoginLabel);
     }
 
-    private void unsuccessfulLogin(){
+    private void unsuccessfulLogin(){//Feedback for unsuccessful login
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(700));
         fadeTransition.setNode(failedLoginLabel);
         fadeTransition.setFromValue(1.0);
         textTimer(fadeTransition, failedLoginLabel);
     }
 
-    private void textTimer(FadeTransition fadeTransition, Label failedLoginLabel) {
+    private void textTimer(FadeTransition fadeTransition, Label failedLoginLabel) { //Manages fade-in and fade-out animations
         fadeTransition.setToValue(0);
         fadeTransition.setCycleCount(1);
         fadeTransition.setAutoReverse(false);
@@ -146,7 +147,7 @@ public class LoginController {
         disableText.playFromStart();
     }
 
-    private void drawUserInterface(ActionEvent event) throws IOException {
+    private void drawUserInterface(ActionEvent event) throws IOException { // Brings up the ordinary user's interface
         control.drawUser = false;
         Parent root = FXMLLoader.load(HelloApplication.class.getResource("user.fxml"));
         Scene scene = new Scene(root, 810, 700);
@@ -154,7 +155,7 @@ public class LoginController {
         stage.setScene(scene);
     }
 
-    private void drawAdminInterface(ActionEvent event) throws IOException {
+    private void drawAdminInterface(ActionEvent event) throws IOException { // Brings up the admin's interface
         control.drawAdmin = false;
         Parent root = FXMLLoader.load(HelloApplication.class.getResource("admin.fxml"));
         Scene scene = new Scene(root, 810, 700);
@@ -162,7 +163,7 @@ public class LoginController {
         stage.setScene(scene);
     }
 
-    public static void exitClient(){
+    public static void exitClient(){ //Terminates back-end client processes
         Control controller = Control.getInstance();
         controller.sendInput("exit");
     }
