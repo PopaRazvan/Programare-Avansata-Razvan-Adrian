@@ -190,11 +190,15 @@ public class Student implements Serializable, Printable {
         return camin;
     }
 
+    public void setIdPreferredStudent(Integer idPreferredStudent) {
+        this.idPreferredStudent = idPreferredStudent;
+    }
+
     public Student getPreferredStudent() {
         return preferredStudent;
     }
 
-    public void setPreferedStudent(Student preferredStudent) {
+    public void setPreferredStudent(Student preferredStudent) {
         this.preferredStudent = preferredStudent;
     }
 

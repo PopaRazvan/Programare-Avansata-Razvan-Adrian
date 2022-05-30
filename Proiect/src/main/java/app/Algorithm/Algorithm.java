@@ -15,10 +15,6 @@ public class Algorithm {
     List<Student> studentList;
     HashMap<Student, Boolean> checkList = new HashMap<>();
     List<Student> preferredStudents = new ArrayList<>();
-    List<Student> boysList = new ArrayList<>();
-    ;
-    List<Student> girlsList = new ArrayList<>();
-    ;
     List<Camera> cameraList = new ArrayList<>();
     List<Camin> caminList;
     String GEN_MASCULIN = "M";
@@ -46,8 +42,6 @@ public class Algorithm {
         CaminRepository caminRepository = new CaminRepository();
         CameraRepository cameraRepository = new CameraRepository();
 
-
-
         studentList = studentRepository.getByMedia();
         caminList = caminRepository.getByRating();
 
@@ -55,33 +49,24 @@ public class Algorithm {
             cameraList.addAll(camin.getCamere());
         }
 
-
         for (Student student : studentList) {
-            if (student.getGen().equals(GEN_MASCULIN))
-                boysList.add(student);
-            else if (student.getGen().equals(GEN_FEMININ)) {
-                girlsList.add(student);
-            }
             checkList.put(student, false);
         }
 
         for (Student student : studentList)
-            if (student.getPreferredStudent() != null && checkList.get(student)==false) {
+            if (student.getPreferredStudent() != null && !checkList.get(student)) {
                 preferredStudents = new ArrayList<>();
                 preferredStudents.add(student);
 
                 getPreferredStudents(student.getPreferredStudent());
-
-                Integer sizeGroup = preferredStudents.size();
 
                 boolean assignCompleted = assignMultipleStudent(preferredStudents, studentRepository);
 
                 if (!assignCompleted) {
                     assignSingleStudent(student, studentRepository);
                 }
-            } else if (checkList.get(student)==false)
+            } else if (!checkList.get(student))
                 assignSingleStudent(student, studentRepository);
-
 
 
         studentRepository.close();
@@ -91,17 +76,7 @@ public class Algorithm {
 
     private void assignSingleStudent(Student student, StudentRepository studentRepository) {
         for (Camera camera : cameraList) {
-            List<Student> studentsInCamera = camera.getStudenti();
-            System.out.println(camera.getStudenti());
-            String genStudentsInCamera = GEN_UNKNOWN;
-            for (Student student1 : studentsInCamera) {
-                if (student1.getGen().equals(GEN_MASCULIN))
-                    genStudentsInCamera = GEN_MASCULIN;
-                else
-                    genStudentsInCamera = GEN_FEMININ;
-
-            }
-
+            String genStudentsInCamera = getGenOfStudentsInCamera(camera);
             if (camera.getNrLocuri() >= 1 && (student.getGen().equals(genStudentsInCamera) || genStudentsInCamera.equals(GEN_UNKNOWN))) {
                 studentRepository.assignStudentToCamera(student, camera);
                 studentRepository.assignStudentToCamin(student, camera.getCamin());
@@ -113,25 +88,36 @@ public class Algorithm {
         }
     }
 
-    private boolean assignMultipleStudent(List group, StudentRepository studentRepository) {
+    private boolean assignMultipleStudent(List<Student> group, StudentRepository studentRepository) {
         for (Camera camera : cameraList) {
 
-            if (camera.getNrLocuri() >= group.size()) {
+            String genStudentsInCamera = getGenOfStudentsInCamera(camera);
+            String genStudentsInGroup=GEN_UNKNOWN;
 
-                for (Student preferredStudent : preferredStudents) {
-                    studentRepository.assignStudentToCamera(preferredStudent, camera);
-                    studentRepository.assignStudentToCamin(preferredStudent, camera.getCamin());
-                    checkList.put(preferredStudent, true);
+            for(Student student : group)
+            {
+                if (student.getGen().equals(GEN_MASCULIN))
+                    genStudentsInGroup = GEN_MASCULIN;
+                else
+                    genStudentsInGroup = GEN_FEMININ;
+            }
+
+            if (camera.getNrLocuri() >= group.size()&& (genStudentsInGroup.equals(genStudentsInCamera) || genStudentsInCamera.equals(GEN_UNKNOWN))) {
+                for (Student student : group) {
+                    studentRepository.assignStudentToCamera(student, camera);
+                    studentRepository.assignStudentToCamin(student, camera.getCamin());
+                    camera.setNrLocuri(camera.getNrLocuri() - 1);
+                    camera.getStudenti().add(student);
+                    checkList.put(student, true);
                 }
                 return true;
             }
         }
         return false;
-
     }
 
     private void getPreferredStudents(Student preferredStudent) {
-        if (preferredStudents.contains(preferredStudent))
+        if (preferredStudents.contains(preferredStudent)||preferredStudent==null)
             return;
 
         preferredStudents.add(preferredStudent);
@@ -141,6 +127,18 @@ public class Algorithm {
                 getPreferredStudents(student.getPreferredStudent());
             }
         }
+    }
+    private String getGenOfStudentsInCamera(Camera camera)
+    {
+        List<Student> studentsInCamera = camera.getStudenti();
+        String genStudentsInCamera = GEN_UNKNOWN;
+        for (Student student1 : studentsInCamera) {
+            if (student1.getGen().equals(GEN_MASCULIN))
+                genStudentsInCamera = GEN_MASCULIN;
+            else
+                genStudentsInCamera = GEN_FEMININ;
+        }
+        return genStudentsInCamera;
     }
 
 }

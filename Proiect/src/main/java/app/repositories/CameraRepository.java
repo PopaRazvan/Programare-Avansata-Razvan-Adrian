@@ -50,6 +50,4 @@ public class CameraRepository {
         entityManager.getTransaction().commit();
     }
 
-
-
 }

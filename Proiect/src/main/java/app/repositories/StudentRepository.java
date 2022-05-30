@@ -100,4 +100,29 @@ public class StudentRepository {
         query.executeUpdate();
         entityManager.getTransaction().commit();
     }
+
+    public void setPreferredStudent(Student student,Student preferredStudent)
+    {
+        student.setIdPreferredStudent(preferredStudent.getId());
+        student.setPreferredStudent(preferredStudent);
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery(
+                        "UPDATE Student s SET s.idPreferredStudent=:idPreferredStudent where s.id=:idStudent")
+                .setParameter("idPreferredStudent",preferredStudent.getId())
+                .setParameter("idStudent", student.getId());
+        query.executeUpdate();
+        entityManager.getTransaction().commit();
+    }
+
+    public void removePreferredStudent(Student student)
+    {
+        student.setIdPreferredStudent(null);
+        student.setPreferredStudent(null);
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery(
+                        "UPDATE Student s SET s.idPreferredStudent=null where s.id=:idStudent")
+                .setParameter("idStudent", student.getId());
+        query.executeUpdate();
+        entityManager.getTransaction().commit();
+    }
 }

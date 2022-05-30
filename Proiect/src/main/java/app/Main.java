@@ -1,38 +1,34 @@
 package app;
 
 import app.Algorithm.Algorithm;
+import app.entities.Student;
+import app.repositories.StudentRepository;
 import app.server.Server;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-//Am facut niste teste
+        //List<Student> studentList;
+        //StudentRepository studentRepository = new StudentRepository();
+        //studentList=studentRepository.getByMedia();
 
-        // StudentRepository studentRepository=new StudentRepository();
-        // CaminRepository caminRepository=new CaminRepository();
-
-        //Student student=new Student(1,"RSL2022","Popa","Razvan","B",2,"A6",8.00,"05-08-2001","poparazvan2001@yahoo.com");
-        //Camin camin=new Camin(1,"C201",10);
-
-
-        //studentRepository.create(student);
-        // caminRepository.create(camin);
-
-        // studentRepository.assignStudentToCamin(student,camin);
-
+       // studentRepository.setPreferredStudent(studentList.get(0),studentList.get(12));
+       // studentRepository.setPreferredStudent(studentList.get(12),studentList.get(17));
+        //studentRepository.setPreferredStudent(studentList.get(17),studentList.get(25));
+        //studentRepository.setPreferredStudent(studentList.get(25),studentList.get(7));
+        //studentRepository.setPreferredStudent(studentList.get(7),studentList.get(0));
         //studentRepository.close();
-        //caminRepository.close();
+        //Algorithm algorithm =new Algorithm();
 
-        Algorithm algorithm =new Algorithm();
-
-        //Server server = new Server();
-        //try {
-       //     server.runServer();
-       // } catch (IOException e) {
-        //    throw new RuntimeException(e);
-       // }
+        Server server = new Server();
+        try {
+           server.runServer();
+        } catch (IOException e) {
+           throw new RuntimeException(e);
+        }
     }
 
 }
