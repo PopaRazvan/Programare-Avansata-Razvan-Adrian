@@ -1,2 +1,31 @@
-[EL Info]: 2022-05-30 13:56:47.028--ServerSession(575795534)--EclipseLink, version: Eclipse Persistence Services - 2.7.9.v20210604-2c549e2208
-[EL Fine]: sql: 2022-05-30 13:56:47.997--ServerSession(575795534)--Connection(1812567032)--SELECT id, an, data_nastere, email, gen, grupa, id_camera, id_camin, id_preferred_student, media, nr_matricol, nume, prenume FROM studenti
+[EL Info]: 2022-05-30 14:36:20.356--ServerSession(622984813)--EclipseLink, version: Eclipse Persistence Services - 2.7.9.v20210604-2c549e2208
+[EL Fine]: sql: 2022-05-30 14:36:20.927--ServerSession(622984813)--Connection(901119564)--SELECT id, is_super_user, password, username FROM users WHERE ((username = ?) AND (password = ?))
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-30 14:36:20.954--ServerSession(622984813)--Connection(901119564)--SELECT id, is_super_user, password, username FROM users WHERE (username = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-30 14:38:30.558--ServerSession(622984813)--Connection(901119564)--SELECT id, is_super_user, password, username FROM users WHERE ((username = ?) AND (password = ?))
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-30 14:38:30.56--ServerSession(622984813)--Connection(901119564)--SELECT id, is_super_user, password, username FROM users WHERE (username = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-30 14:38:54.472--ServerSession(622984813)--Connection(901119564)--SELECT id, is_super_user, password, username FROM users WHERE ((username = ?) AND (password = ?))
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-30 14:38:54.473--ServerSession(622984813)--Connection(901119564)--SELECT id, is_super_user, password, username FROM users WHERE (username = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-30 14:39:42.571--ServerSession(622984813)--Connection(901119564)--SELECT id, is_super_user, password, username FROM users WHERE ((username = ?) AND (password = ?))
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-30 14:39:42.575--ServerSession(622984813)--Connection(901119564)--SELECT id, is_super_user, password, username FROM users WHERE (username = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-30 14:41:55.021--ServerSession(622984813)--Connection(901119564)--SELECT id, an, data_nastere, email, gen, grupa, id_camera, id_camin, id_preferred_student, media, nr_matricol, nume, prenume FROM studenti WHERE (id = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-30 14:41:55.048--ClientSession(1279304164)--Connection(901119564)--UPDATE studenti SET id_preferred_student = ? WHERE (id = ?)
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-30 14:41:55.085--ClientSession(1279304164)--Connection(901119564)--INSERT INTO studenti (id, an, data_nastere, email, gen, grupa, id_camera, id_camin, id_preferred_student, media, nr_matricol, nume, prenume) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	bind => [13 parameters bound]
+[EL Fine]: sql: 2022-05-30 14:42:49.925--ClientSession(726743793)--Connection(901119564)--INSERT INTO users (id, is_super_user, password, username) VALUES (?, ?, ?, ?)
+	bind => [4 parameters bound]
+[EL Fine]: sql: 2022-05-30 14:43:05.361--ServerSession(622984813)--Connection(901119564)--SELECT id, is_super_user, password, username FROM users WHERE ((username = ?) AND (password = ?))
+	bind => [2 parameters bound]
+[EL Fine]: sql: 2022-05-30 14:43:05.363--ServerSession(622984813)--Connection(901119564)--SELECT id, is_super_user, password, username FROM users WHERE (username = ?)
+	bind => [1 parameter bound]
+[EL Fine]: sql: 2022-05-30 14:43:06.179--ServerSession(622984813)--Connection(901119564)--SELECT id, is_super_user, password, username FROM users WHERE (username = ?)
+	bind => [1 parameter bound]

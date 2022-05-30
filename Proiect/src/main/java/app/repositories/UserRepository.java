@@ -53,7 +53,10 @@ public class UserRepository {
 
     public User getByUsername(String username)
     {
-        return entityManager.find(User.class, username);
+        Query query = entityManager.createQuery(
+                        "SELECT u FROM User u where u.username = :username")
+                .setParameter("username", username);
+         return (User)query.getResultList().get(0);
     }
 
 }

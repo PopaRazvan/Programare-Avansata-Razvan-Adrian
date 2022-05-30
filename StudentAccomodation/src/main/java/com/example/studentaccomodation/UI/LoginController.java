@@ -57,6 +57,7 @@ public class LoginController {
                 control.setCurrentPassword(password);
                 loginController.successfulLogin();
                 control.drawAdmin = true;
+                System.out.println("OK");
             }
             System.out.println("End");
         }
@@ -91,7 +92,7 @@ public class LoginController {
         Logger logger = new Logger(this);
         logger.start();
         try {
-            Thread.sleep(300);
+            Thread.sleep(600);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

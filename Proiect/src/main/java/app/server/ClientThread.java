@@ -1,5 +1,6 @@
 package app.server;
 
+import app.Algorithm.Algorithm;
 import app.entities.*;
 import app.parsers.JSONPrinter;
 import app.repositories.CameraRepository;
@@ -231,8 +232,10 @@ public class ClientThread extends Thread {
             student.setPreferredStudent(null);
         }
 
+
         studentRepository.create(student);
-        //TODO add student to DB
+        Algorithm algorithm=new Algorithm();
+
         return student.toString();
     }
 
